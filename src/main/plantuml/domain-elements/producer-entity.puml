@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity Producer {
+    shortName: String
+    name : String
+}
+
+@enduml

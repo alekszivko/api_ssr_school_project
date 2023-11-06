@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+enum Status {
+    CUSTOMER
+    RESERVED
+    MISSING
+    PROJECT
+}
+
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+/'IMPORTS'/
+/'entities'/
+!include domain-elements/user-entity.puml
+!include domain-elements/storageobjectmeta-entity.puml
+!include domain-elements/storageobject-entity.puml
+!include domain-elements/storageobjecthistory-entity.puml
+!include domain-elements/producer-entity.puml
+!include domain-elements/reservation-entity.puml
+!include domain-elements/storage-entity.puml
+
+/'enums'/
+!include domain-elements/role-enum.puml
+!include domain-elements/sfptype-enum.puml
+!include domain-elements/type-enum.puml
+!include domain-elements/status-enum.puml
+
+/'value objects'/
+!include domain-elements/profile-valueobject.puml
+!include domain-elements/address-valueobject.puml
+
+/'records'/
+!include domain-elements/customer-record.puml
+
+
+/'relations'/
+
+Profile <-- User : embedded /'so profile doesn't get loaded always'/
+Address <-right Storage : embedded
+Role .down. User
+
+Reservation "0..1" --* "1" StorageObject
+Customer <-left Reservation : embedded
+
+
+User "1" - "0..*" Reservation : "       "
+User "0..1" -- "0..* "StorageObject
+
+StorageObjectHistory "0..*" -up- "1" StorageObject
+
+StorageObjectMeta "1..*" -left- "1" Producer : "     "
+StorageObject "1..*" -left "1" StorageObjectMeta : "      "
+StorageObject -> Customer : embedded
+
+
+Storage "0..1" -up- "0..*  " StorageObject
+Status .up. StorageObject
+Type .down. StorageObjectMeta
+SfpType .down. StorageObjectMeta
+
+@enduml

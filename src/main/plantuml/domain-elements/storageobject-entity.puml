@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity StorageObject {
+    - producer : Producer
+    - storageObjectMeta : StorageObjectMeta
+    - serialNumber : String
+    - macAddress : String
+    - remark : String
+    - projectDevice : boolean
+    - status : Status
+    - storage : Storage
+    - reservation : Reservation
+    - storedAtCostumer : Customer
+    - storedAtUser : User
+}
+@enduml

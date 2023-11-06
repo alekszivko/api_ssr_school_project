@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity StorageObjectHistory {
+    - StorageObject : StorageObject
+    - untilDateTime: LocalDateTime
+    - status : Status
+    - storage : Storage
+    - reservation : Reservation
+}
+
+@enduml

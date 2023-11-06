@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity Storage {
+    -name : String
+    -address : Adress
+}
+
+@enduml

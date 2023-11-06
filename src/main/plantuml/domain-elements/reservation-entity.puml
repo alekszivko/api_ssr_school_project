@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity Reservation {
+    - reservedAt : LocalDateTime
+    - reservedFrom : User
+    - reservedFor: Customer
+    - reservedDescription : String
+    - completed : boolean
+    - lastModified: LocalDateTime /' probably redundant'/
+}
+
+@enduml

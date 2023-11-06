@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity Address << (V,#FF7700) ValueObject >> {
+    - street : String
+    - addressAddition : String
+    - zipCode : String
+    - city : String
+}
+
+@enduml

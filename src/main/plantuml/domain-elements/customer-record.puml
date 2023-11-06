@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Customer << (R,#009000) ValueObject >> {
+    - connectionNo : int
+}
+
+@enduml

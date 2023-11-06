@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+enum Role {
+    MANAGEMENT /' is allowed to add users or if teamlead is allowed,storageadmin has to activate it'/
+    STORAGEADMIN /' The only one who is allowed to see all Lagerobjects?'/
+    FIELDSERVICETECHNICIAN /' can see only unbooked Lagerobjects and Lagerobjects he booked himself'/
+    ORDERFULLFILLMENT
+    PROJECTMANAGER
+}
+
+@enduml

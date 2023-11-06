@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity StorageObjectMeta {
+    - name : String
+    - type : Type
+    - osVersion : String
+    - consumablesPerBox : int
+    - phoneType : IpPhoneType
+    - waveLength : String
+    - interfaceSpeed : String
+
+}
+@enduml

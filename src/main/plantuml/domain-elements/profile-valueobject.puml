@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity  Profile << (V,#FF7700) ValueObject >> { /' could be called Profile as well or summarized with user?'/
+    - username : String /'Probably a combination of firstName and lastName generated automatically'/
+    - firstName : String
+    - lastName : String
+    - phone : String
+}
+
+@enduml

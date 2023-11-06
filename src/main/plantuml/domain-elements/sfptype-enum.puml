@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+enum SfpType {
+    SM
+    MM
+    WDM
+}
+
+@enduml
