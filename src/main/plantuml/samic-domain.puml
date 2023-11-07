@@ -35,17 +35,17 @@ Reservation "0..1" --* "1" StorageObject
 Customer <-left Reservation : embedded
 
 
-User "1" - "0..*" Reservation : "       "
-User "0..1" -- "0..* "StorageObject
+User "1" -- "0..*" Reservation
+User "0..1" -- "0..*" StorageObject
 
 StorageObjectHistory "0..*" -up- "1" StorageObject
 
-StorageObjectMeta "1..*" -left- "1" Producer : "     "
-StorageObject "1..*" -left "1" StorageObjectMeta : "      "
+StorageObjectMeta "1..*" -left- "1" Producer
+StorageObject "1..*" -left "1" StorageObjectMeta
 StorageObject -> Customer : embedded
 
 
-Storage "0..1" -up- "0..*  " StorageObject
+Storage "0..1" -up- "0..*" StorageObject
 Status .up. StorageObject
 Type .down. StorageObjectMeta
 SfpType .down. StorageObjectMeta
