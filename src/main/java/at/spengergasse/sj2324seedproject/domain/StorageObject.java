@@ -19,7 +19,7 @@ public class StorageObject extends AbstractPersistable<Long>{
     Relations
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storage_object_meta")
+    @JoinColumn(name = "storage_object_meta", foreignKey = @ForeignKey(name = "StorageObject_2_StorageObejctMeta"))
     private StorageObjectMeta storageObjectMeta;
 //
 //    @Column(name = "storage")
