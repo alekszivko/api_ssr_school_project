@@ -1,10 +1,17 @@
 services:
   oracle:
-    #### Application drops nullpointer exception below spring boot 3.1.6 version with latest docker-compose version
-    image: 'gvenzl/oracle-xe:21-slim-faststart'
+    image: 'gvenzl/oracle-xe:21-full'
     environment:
-      - APP_USER=oracle
-      - APP_USER_PASSWORD=oracle
-      - ORACLE_PASSWORD=oracle
+#      - 'ORACLE_USER=savi'
+      - 'ORACLE_PASSWORD=secret'
     ports:
-      - '1521:1521'
+      - '1521'
+#    working_dir: '/test'
+#  postgres:
+#    image: 'postgres:latest'
+#    environment:
+#      - 'POSTGRES_DB=test'
+#      - 'POSTGRES_PASSWORD=test'
+#      - 'POSTGRES_USER=test'
+#    ports:
+#      - '5432'

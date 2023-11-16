@@ -23,7 +23,6 @@ public class StorageObjectMeta extends AbstractPersistable<Long>{
     Relations
      */
 
-    @Valid
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "FK_producer", foreignKey = @ForeignKey(name = "FK_producer_2_storageObjectMeta"))
