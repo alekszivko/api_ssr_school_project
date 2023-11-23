@@ -1,17 +1,17 @@
-services:
-  oracle:
-    image: 'gvenzl/oracle-xe:21-full'
-    environment:
-#      - 'ORACLE_USER=savi'
-      - 'ORACLE_PASSWORD=secret'
-    ports:
-      - '1521'
-#    working_dir: '/test'
-#  postgres:
-#    image: 'postgres:latest'
-#    environment:
-#      - 'POSTGRES_DB=test'
-#      - 'POSTGRES_PASSWORD=test'
-#      - 'POSTGRES_USER=test'
-#    ports:
-#      - '5432'
+  services:
+    oracle:
+      image: 'gvenzl/oracle-xe:latest'
+      environment:
+      - 'APP_USER=quzu'
+      - 'APP_USER_PASSWORD=oracle'
+      - 'ORACLE_PASSWORD=savas'
+      ports:
+        - '1521'
+#    postgres:
+#      image: 'postgres:latest'
+#      environment:
+#        - 'POSTGRES_DB=test'
+#        - 'POSTGRES_PASSWORD=test'
+#        - 'POSTGRES_USER=test'
+#      ports:
+#        - '5432'

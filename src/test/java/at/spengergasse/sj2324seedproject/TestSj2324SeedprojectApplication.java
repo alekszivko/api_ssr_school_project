@@ -1,6 +1,8 @@
 package at.spengergasse.sj2324seedproject;
 
 
+import at.spengergasse.sj2324seedproject.persistence.StorageObjectMetaPersistence;
+//import at.spengergasse.sj2324seedproject.persistence.StorageObjectMetaPersistenceTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
 
