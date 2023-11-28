@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.converter;
+package at.spengergasse.sj2324seedproject.persistence.converter;
 
 import at.spengergasse.sj2324seedproject.domain.Role;
 import jakarta.persistence.AttributeConverter;

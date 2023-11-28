@@ -30,8 +30,10 @@ class UserRepositoryTest {
                 .lastLogin(LocalDateTime.now())
                 .isActivated(true)
                 .profile(Profile.builder()
+                        .username("Alex")
                         .firstName("Alex")
                         .lastName("Alex")
+                        .phone("+4369912345678")
                         .build())
                 .build();
 
@@ -42,5 +44,6 @@ class UserRepositoryTest {
         assertThat(saved).isNotNull().isSameAs(user);
         assertThat(saved.getId()).isNotNull().isPositive();
         assertThat(saved.getProfile()).isNotNull();
+        assertThat(user.getProfile()).isEqualTo(saved.getProfile());
     }
 }
