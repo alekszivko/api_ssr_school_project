@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.persistance;
+package at.spengergasse.sj2324seedproject.persistence;
 
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import org.springframework.data.jpa.repository.JpaRepository;
