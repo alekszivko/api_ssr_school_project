@@ -1,34 +1,69 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-@Entity
-public class StorageObject extends AbstractPersistable<Long>{
-    @Column(name = "producer")
-    private Producer          producer;
-    @Column(name = "storage_object_meta")
-    private StorageObjectMeta storageObjectMeta;
-    @Column(name = "serial_number")
-    private String            serialNumber;
-    @Column(name = "mac_address")
+import java.util.ArrayList;
+import java.util.List;
 
-    private String            macAddress;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "storage_object")
+public class StorageObject extends AbstractPersistable<Long>{
+
+    /*
+    Relations
+     */
+//    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    private User storedAtUser;
+
+    @OneToMany(mappedBy = "storageobject", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<StorageObjectMeta> storageObjectMeta = new ArrayList<>();
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinColumn(name = "fk_storage", foreignKey = @ForeignKey(name = "fk_storage_object_2_storage"))
+//    private Storage storage;
+
+//    @Column(name = "status")
+//    @Enumerated(EnumType.STRING)
+//    private Status status;
+
+
+//    @JoinColumn(name = "fk_reservation", foreignKey = @ForeignKey(name = "fk_storageObject_2_reservation"))
+//    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    private Reservation reservation;
+
+    /*
+    Attributes
+     */
+    @Column(name = "serial_number")
+    private String serialNumber;
+
+    @Column(name = "mac_address")
+    @NotBlank
+    private String macAddress;
+
     @Column(name = "remark")
-    private String            remark;
+    @NotBlank
+    private String remark = ConstantsDomain.DEFAULT_VALUE;
 
     @Column(name = "project_device")
     private boolean projectDevice;
-    @Column(name = "status")
-    private Status  status;
-    @Column(name = "storage")
-    private Storage storage;
 
-    @Column(name = "reservation")
-    private Reservation reservation;
+
     @Column(name = "stored_at_customer")
-    private Customer    storedAtCustomer;
-    @Column(name = "stored_at_user")
-    private User        storedAtUser;
+    @Embedded
+    private Customer storedAtCustomer;
+
 }
+

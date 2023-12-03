@@ -1,0 +1,17 @@
+  services:
+    oracle:
+      image: 'gvenzl/oracle-free:23.3-slim-faststart'
+      environment:
+      - 'APP_USER=quzu'
+      - 'APP_USER_PASSWORD=oracle'
+      - 'ORACLE_PASSWORD=savas'
+      ports:
+        - '1521'
+#    postgres:
+#      image: 'postgres:latest'
+#      environment:
+#        - 'POSTGRES_DB=test'
+#        - 'POSTGRES_PASSWORD=test'
+#        - 'POSTGRES_USER=test'
+#      ports:
+#        - '5432'
