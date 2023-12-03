@@ -32,4 +32,5 @@ public class Storage extends AbstractPersistable<Long> {
     private Address address;
 
 
+
 }

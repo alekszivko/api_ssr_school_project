@@ -2,8 +2,8 @@ package at.spengergasse.sj2324seedproject.persistence.converter;
 
 import at.spengergasse.sj2324seedproject.domain.Status;
 
-import at.spengergasse.sj2324seedproject.persistance.converter.StatusConverter;
-import org.junit.jupiter.api.Assertions;
+//import at.spengergasse.sj2324seedproject.persistance.converter.StatusConverter;
+//import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

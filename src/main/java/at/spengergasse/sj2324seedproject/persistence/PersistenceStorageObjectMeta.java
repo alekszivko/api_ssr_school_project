@@ -1,8 +1,12 @@
 package at.spengergasse.sj2324seedproject.persistence;
 
 import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
-import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface StorageObjectMetaPersistence extends JpaRepository<StorageObjectMeta, Long>{
+import java.util.Optional;
+@Repository
+
+public interface PersistenceStorageObjectMeta extends JpaRepository<StorageObjectMeta, Long>{
+
 }

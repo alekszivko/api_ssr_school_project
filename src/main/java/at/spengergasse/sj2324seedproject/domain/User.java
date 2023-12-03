@@ -3,12 +3,14 @@ package at.spengergasse.sj2324seedproject.domain;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -41,5 +43,7 @@ public class User extends AbstractPersistable<Long> {
     @Embedded
     @Valid
     private Profile profile;
+
+
 
 }

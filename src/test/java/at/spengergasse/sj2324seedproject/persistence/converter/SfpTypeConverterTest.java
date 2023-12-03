@@ -1,9 +1,9 @@
 package at.spengergasse.sj2324seedproject.persistence.converter;
 
 import at.spengergasse.sj2324seedproject.domain.SfpType;
-import at.spengergasse.sj2324seedproject.domain.Status;
-import at.spengergasse.sj2324seedproject.persistance.converter.SfpTypeConverter;
-import at.spengergasse.sj2324seedproject.persistance.converter.StatusConverter;
+//import at.spengergasse.sj2324seedproject.domain.Status;
+//import at.spengergasse.sj2324seedproject.persistance.converter.SfpTypeConverter;
+//import at.spengergasse.sj2324seedproject.persistance.converter.StatusConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

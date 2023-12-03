@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="reservation")
-public class Reservation extends AbstractPersistable<Long> {
+@Table(name = "reservation")
+public class Reservation extends AbstractPersistable<Long>{
 
     private static final int DESCRIPTION_LENGTH = 350;
 
@@ -35,10 +35,11 @@ public class Reservation extends AbstractPersistable<Long> {
     private Customer reservedFor;
 
     @Length(max = DESCRIPTION_LENGTH)
-    private String reservationDescription;
+    private String  reservationDescription;
     private boolean completed;
 
     @PastOrPresent
     private LocalDateTime lastModified;
 
 }
+
