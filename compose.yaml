@@ -1,6 +1,6 @@
   services:
     oracle:
-      image: 'gvenzl/oracle-xe:latest'
+      image: 'gvenzl/oracle-free:23.3-slim-faststart'
       environment:
       - 'APP_USER=quzu'
       - 'APP_USER_PASSWORD=oracle'

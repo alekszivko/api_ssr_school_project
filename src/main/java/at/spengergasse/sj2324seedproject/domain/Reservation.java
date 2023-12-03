@@ -1,4 +1,7 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-public class Reservation {
+import jakarta.persistence.Entity;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+@Entity
+public class Reservation extends AbstractPersistable<Long>{
 }
