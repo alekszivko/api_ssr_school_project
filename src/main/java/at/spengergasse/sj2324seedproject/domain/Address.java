@@ -25,11 +25,11 @@ public class Address {
     @Column(length = 128)
     private @NotNull @NotEmpty @NotBlank String street;
     @Column(length = 32)
-    private @NotNull @NotEmpty @NotBlank int number;
+    private @NotNull @NotEmpty @NotBlank Integer number;
     @Column(length = 64)
     private String addressAddition;
     @Column(length = 16)
-    private @NotNull @NotEmpty @NotBlank int zipcode;
+    private @NotNull @NotEmpty @NotBlank Integer zipcode;
     @Column(length = 64)
     private @NotNull @NotEmpty @NotBlank String city;
 

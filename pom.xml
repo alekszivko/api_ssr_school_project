@@ -89,7 +89,6 @@
             <version>1.19.2</version>
             <scope>test</scope>
         </dependency>
-<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -97,10 +96,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-=======
-    </dependencies>
->>>>>>> groupOf4Classes
     <build>
         <plugins>
             <plugin>

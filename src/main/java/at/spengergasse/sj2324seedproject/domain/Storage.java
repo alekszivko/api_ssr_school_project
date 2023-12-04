@@ -1,13 +1,5 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-<<<<<<< HEAD
-import jakarta.persistence.Entity;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-@Entity
-public class Storage extends AbstractPersistable<Long>{
-=======
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -28,7 +20,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Builder
 
 @Entity
-@Table(name="storage")
+@Table(name="storages")
 public class Storage extends AbstractPersistable<Long> {
 
 
@@ -40,5 +32,4 @@ public class Storage extends AbstractPersistable<Long> {
 
 
 
->>>>>>> groupOf4Classes
 }

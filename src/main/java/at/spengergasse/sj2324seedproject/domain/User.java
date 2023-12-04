@@ -1,12 +1,5 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-<<<<<<< HEAD
-import jakarta.persistence.Entity;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-@Entity
-public class User extends AbstractPersistable<Long>{
-=======
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -53,5 +46,4 @@ public class User extends AbstractPersistable<Long> {
 
 
 
->>>>>>> groupOf4Classes
 }

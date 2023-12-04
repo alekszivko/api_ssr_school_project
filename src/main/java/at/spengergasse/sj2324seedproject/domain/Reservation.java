@@ -1,11 +1,5 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-<<<<<<< HEAD
-import jakarta.persistence.Entity;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-@Entity
-public class Reservation extends AbstractPersistable<Long>{
-=======
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -31,7 +25,7 @@ public class Reservation extends AbstractPersistable<Long>{
     @PastOrPresent
     private LocalDateTime reservdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
     @NotNull
     private User reservdBy;
@@ -47,6 +41,5 @@ public class Reservation extends AbstractPersistable<Long>{
     @PastOrPresent
     private LocalDateTime lastModified;
 
->>>>>>> groupOf4Classes
 }
 
