@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public enum SfpType {
 
+<<<<<<< HEAD
     SM("sm", "sm"),
     MM("mm", "mm"),
     WDM("wdm", "wdm");
@@ -16,4 +17,20 @@ public enum SfpType {
 
     private String longVersion;
     private String shortVersion;
+=======
+
+    SM,
+    MM,
+    WDM
+
+//    SM("sm", "sm"),
+//    MM("mm", "mm"),
+//    WDM("wdm", "wdm");
+//
+//
+//
+//    private String longVersion;
+//    private String shortVersion;
+
+>>>>>>> groupOf4Classes
 }

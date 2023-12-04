@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   services:
     oracle:
       image: 'gvenzl/oracle-free:23.3-slim-faststart'
@@ -15,3 +16,23 @@
 #        - 'POSTGRES_USER=test'
 #      ports:
 #        - '5432'
+=======
+services:
+  oracle:
+    image: 'gvenzl/oracle-xe:21-full'
+    environment:
+#      - 'ORACLE_USER=savi'
+      - 'ORACLE_PASSWORD=secret'
+    ports:
+      - '1521'
+#    working_dir: '/test'
+#  postgres:
+#    image: 'postgres:latest'
+#    environment:
+#      - 'POSTGRES_DB=test'
+#      - 'POSTGRES_PASSWORD=test'
+#      - 'POSTGRES_USER=test'
+#    ports:
+#      - '5432'
+
+>>>>>>> groupOf4Classes

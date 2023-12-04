@@ -1,5 +1,9 @@
 package at.spengergasse.sj2324seedproject;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> groupOf4Classes
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
@@ -26,12 +30,24 @@ public class TestSj2324SeedprojectApplication {
                        .withCreateContainerCmdModifier(cmd -> {
                            cmd.withName("samic-oracle");
                            cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(1521), new ExposedPort(1521))));
+<<<<<<< HEAD
                        });
     }
 
+=======
+                       }).withReuse(true);
+    }
+
+
+>>>>>>> groupOf4Classes
     public static void main(String[] args){
         SpringApplication.from(Sj2324SeedprojectApplication::main)
                 .with(TestSj2324SeedprojectApplication.class)
                 .run(args);
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> groupOf4Classes
