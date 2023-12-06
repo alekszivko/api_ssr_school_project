@@ -16,7 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "producer")
+@Table(name = "producers")
 @Entity
 public class Producer extends AbstractPersistable<Long>{
 

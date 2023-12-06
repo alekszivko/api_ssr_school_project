@@ -25,7 +25,7 @@ public class Reservation extends AbstractPersistable<Long>{
     @PastOrPresent
     private LocalDateTime reservdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
     @NotNull
     private User reservdBy;

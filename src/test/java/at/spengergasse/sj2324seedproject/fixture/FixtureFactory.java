@@ -31,6 +31,7 @@ public class FixtureFactory{
 
     public static StorageObjectMeta give_me_a_storageObjectMeta1(){
         return StorageObjectMeta.builder()
+                       .storageobject(give_me_a_storageObject1())
                        .name("meta name1")
                        .type(Type.IP_PHONE)
                        .osVersion("version1")

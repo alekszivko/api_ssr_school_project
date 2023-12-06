@@ -6,13 +6,17 @@ import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.utility.DockerImageName;
+import org.testcontainers.utility.TestcontainersConfiguration;
 
-@Configuration
+@SpringBootTest
+@Import(TestcontainersConfiguration.class)
 public class TestSj2324SeedprojectApplication {
 
     @Bean
@@ -27,6 +31,7 @@ public class TestSj2324SeedprojectApplication {
                        .withCreateContainerCmdModifier(cmd -> {
                            cmd.withName("samic-oracle");
                            cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(1521), new ExposedPort(1521))));
+
                        }).withReuse(true);
     }
 
@@ -36,5 +41,5 @@ public class TestSj2324SeedprojectApplication {
                 .with(TestSj2324SeedprojectApplication.class)
                 .run(args);
     }
-}
 
+}

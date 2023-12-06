@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StorageRepository extends JpaRepository <Storage, Long> {
+public interface StorageRepository extends JpaRepository<Storage, Long> {
     //Cursor auf StorageRepository -- Tastenkürzel STrg + shift + t ---- Create New test
 
 

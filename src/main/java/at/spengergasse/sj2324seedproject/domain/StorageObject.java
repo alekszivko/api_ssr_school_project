@@ -16,12 +16,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "storage_object")
+@Table(name = "storage_objects")
 public class StorageObject extends AbstractPersistable<Long>{
 
     /*
     Relations
      */
+
 
 //    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -31,9 +32,12 @@ public class StorageObject extends AbstractPersistable<Long>{
     @OneToMany(mappedBy = "storageobject", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<StorageObjectMeta> storageObjectMeta = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<StorageObjectHistory> storageObjectHistories;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "fk_storage", foreignKey = @ForeignKey(name = "fk_storage_object_2_storage"))
-    private Storage storage;
+    @JoinColumn(name = "fk_storages", foreignKey = @ForeignKey(name = "fk_storage_2_storageObject"))
+    private Storage stored;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

@@ -1,14 +1,5 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-
-public enum Type {
-
-    IP_PHONE,
-    ROUTER,
-    SWITCH,
-    SFP,
-    CONSUMABLES
-//
 //import lombok.AllArgsConstructor;
 //import lombok.Getter;
 //import lombok.NoArgsConstructor;
@@ -28,4 +19,13 @@ public enum Type {
 //
 //    private String longVersion;
 //    private String shortVersion;
+
+public enum Type {
+
+    IP_PHONE,
+    ROUTER,
+    SWITCH,
+    SFP,
+    CONSUMABLES
+
 }
