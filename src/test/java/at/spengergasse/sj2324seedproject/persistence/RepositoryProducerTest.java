@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(TestcontainersConfiguration.class)
-public class PersistenceProducerTest{
+public class RepositoryProducerTest{
 
 
     @Autowired
-    private PersistenceProducer repository;
+    private RepositoryProducer repository;
 
     @Test
     void ensure_save_producer_into_DB(){
@@ -28,7 +28,6 @@ public class PersistenceProducerTest{
 
 
         Producer prod =  Producer.builder()
-                                 .storageObjectMeta(FixtureFactory.give_me_a_storageObjectMeta1())
                                  .shortname("shortname1")
                                  .name("name1")
                                  .build();
@@ -42,6 +41,7 @@ public class PersistenceProducerTest{
         //then
         assertThat(repository.findById(saved.getId()).get()).isSameAs(producer1);
 //        assertThat(repository.findById(saved3.getId())).isSameAs(prod);
+
 
     }
 }

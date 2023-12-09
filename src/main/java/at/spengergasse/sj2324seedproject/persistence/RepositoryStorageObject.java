@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersistenceStorageObject extends JpaRepository<StorageObject, Long>{
+public interface RepositoryStorageObject extends JpaRepository<StorageObject, Long>{
 }

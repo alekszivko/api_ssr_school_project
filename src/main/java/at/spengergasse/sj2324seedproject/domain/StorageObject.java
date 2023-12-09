@@ -29,15 +29,16 @@ public class StorageObject extends AbstractPersistable<Long>{
     @OneToMany
     private List<User> storedAtUser = new ArrayList<>();
 
-    @OneToMany(mappedBy = "storageobject", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<StorageObjectMeta> storageObjectMeta = new ArrayList<>();
+    @ManyToOne( fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "fk_storage_object_meta", foreignKey = @ForeignKey(name = "fk_storageObejctMeta_2_storageObject"))
+    private StorageObjectMeta storageObjectMeta ;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<StorageObjectHistory> storageObjectHistories;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "fk_storages", foreignKey = @ForeignKey(name = "fk_storage_2_storageObject"))
-    private Storage stored;
+    private Storage storedStorage;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

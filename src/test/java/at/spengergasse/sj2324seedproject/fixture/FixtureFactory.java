@@ -15,7 +15,6 @@ public class FixtureFactory{
 
     public static Producer give_me_a_producer1(){
         return Producer.builder()
-                       .storageObjectMeta(give_me_a_storageObjectMeta1())
                        .shortname("shortname1")
                        .name("name1")
                        .build();
@@ -31,7 +30,7 @@ public class FixtureFactory{
 
     public static StorageObjectMeta give_me_a_storageObjectMeta1(){
         return StorageObjectMeta.builder()
-                       .storageobject(give_me_a_storageObject1())
+                       .producer(give_me_a_producer1())
                        .name("meta name1")
                        .type(Type.IP_PHONE)
                        .osVersion("version1")
@@ -43,8 +42,7 @@ public class FixtureFactory{
     }
     public static StorageObjectMeta give_me_a_storageObjectMeta2(){
         return StorageObjectMeta.builder()
-                       .producer(give_me_a_List_of_producer())
-                       .storageobject(give_me_a_storageObject1())
+                       .producer(give_me_a_producer2())
                        .name("meta name2")
                        .type(Type.IP_PHONE)
                        .osVersion("version2")

@@ -27,13 +27,13 @@ public class StorageObjectMeta extends AbstractPersistable<Long>{
     /*
     Relations
      */
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "fk_storage_object_meta", foreignKey = @ForeignKey(name = "fk_storageObejctMeta_2_storageObject"))
-    public StorageObject storageobject;
 
-    @OneToMany(mappedBy = "storageObjectMeta", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Producer> producer = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    public List<StorageObject> storageobject;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "fk_producer", foreignKey = @ForeignKey(name = "fk_producer_2_storageObejctMeta"))
+    private Producer producer;
 
 
     @Column(name = "storage_object_type")

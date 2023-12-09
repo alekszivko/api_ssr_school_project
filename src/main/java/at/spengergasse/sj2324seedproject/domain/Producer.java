@@ -7,12 +7,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.util.*;
 
-//@Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,9 +25,8 @@ public class Producer extends AbstractPersistable<Long>{
     Relations
      */
 
-    @JoinColumn(name = "fk_storageObjectMeta", foreignKey = @ForeignKey(name = "fk_storageObjectMeta_2_producer"))
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private StorageObjectMeta storageObjectMeta;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<StorageObjectMeta> storageObjectMeta;
 
 
     /*
