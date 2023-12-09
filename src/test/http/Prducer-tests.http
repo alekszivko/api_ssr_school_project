@@ -1,0 +1,9 @@
+### All producers
+GET http://localhost:8080/api/producer
+Accept: application/json
+
+### One expl. producer containing 'my'
+GET http://localhost:8080/api/producer?nameParam=mibm
+Accept: application/json
+
+###

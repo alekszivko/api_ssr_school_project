@@ -14,10 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(TestcontainersConfiguration.class)
-public class PersistenceStorageObjectTest{
+public class RepositoryStorageObjectTest{
 
     @Autowired
-    private PersistenceStorageObject repository;
+    private RepositoryStorageObject repository;
 
     @Test
     void ensure_save_storageOBject_into_DB(){

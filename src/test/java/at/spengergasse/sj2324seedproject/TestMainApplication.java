@@ -15,9 +15,9 @@ import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.TestcontainersConfiguration;
 
-@SpringBootTest
-@Import(TestcontainersConfiguration.class)
-public class TestSj2324SeedprojectApplication {
+@Configuration
+public class TestMainApplication{
+
 
     @Bean
     @ServiceConnection
@@ -29,16 +29,16 @@ public class TestSj2324SeedprojectApplication {
                        .withPassword("oracle")
                        .withExposedPorts(1521)
                        .withCreateContainerCmdModifier(cmd -> {
-                           cmd.withName("samic-oracle");
+//                           cmd.withName("samic-oracle");
                            cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(1521), new ExposedPort(1521))));
 
-                       }).withReuse(true);
+                       })/*.withReuse(true)*/;
     }
 
 
     public static void main(String[] args){
         SpringApplication.from(Sj2324SeedprojectApplication::main)
-                .with(TestSj2324SeedprojectApplication.class)
+                .with(TestMainApplication.class)
                 .run(args);
     }
 
