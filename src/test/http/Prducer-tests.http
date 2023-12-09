@@ -2,8 +2,20 @@
 GET http://localhost:8080/api/producer
 Accept: application/json
 
-### One expl. producer containing 'my'
-GET http://localhost:8080/api/producer?nameParam=mibm
+### One expl. producer containing 'cro'
+GET http://localhost:8080/api/producer?nameParam=cro
+Accept: application/json
+
+### One expl. producer containing 'bm'
+GET http://localhost:8080/api/producer?nameParam=inenh
+Accept: application/json
+
+### One expl. producer containing 'xx' -> give all
+GET http://localhost:8080/api/producer?nameParam=xx
+Accept: application/json
+
+###One expl. producer containing '' -> give all
+GET http://localhost:8080/api/producer?nameParam=
 Accept: application/json
 
 ###

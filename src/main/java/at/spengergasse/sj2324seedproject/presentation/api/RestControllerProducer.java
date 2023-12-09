@@ -24,7 +24,7 @@ public class RestControllerProducer{
     public List<ProducerDTO> fetchProducers(@RequestParam Optional<String> nameParam){
         List<ProducerDTO> result       = new ArrayList<>();
         List<Producer>    persProducer = serviceProducer.fetchProducer(nameParam);
-        for(Producer pro : persProducer){
+        for(Producer pro: persProducer){
             ProducerDTO producerDTO = new ProducerDTO(pro);
             result.add(producerDTO);
         }
@@ -35,16 +35,16 @@ public class RestControllerProducer{
         //                        .toList();
     }
 
-//    @GetMapping()
-//    public List<ProducerDTO> fetchProducersName(@RequestParam Optional<String> namePart){
-//
-//        List<ProducerDTO> result       = new ArrayList<>();
-//        List<Producer>    persProducer = serviceProducer.fetchProducerName(namePart);
-//        for(Producer pro : persProducer){
-//            ProducerDTO producerDTO = new ProducerDTO(pro);
-//            result.add(producerDTO);
-//        }
-//        return result;
-//    }
+    //    @GetMapping()
+    //    public List<ProducerDTO> fetchProducersName(@RequestParam Optional<String> namePart){
+    //
+    //        List<ProducerDTO> result       = new ArrayList<>();
+    //        List<Producer>    persProducer = serviceProducer.fetchProducerName(namePart);
+    //        for(Producer pro : persProducer){
+    //            ProducerDTO producerDTO = new ProducerDTO(pro);
+    //            result.add(producerDTO);
+    //        }
+    //        return result;
+    //    }
 
 }

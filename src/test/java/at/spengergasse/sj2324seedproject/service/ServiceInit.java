@@ -22,30 +22,30 @@ public class ServiceInit{
     @PostConstruct
     public void init(){
         Producer prod1 = Producer.builder()
-                                 .shortname("shortname1")
+                                 .shortname("MS")
                                  .name("Micro Soft")
                                  .build();
                 Producer prod2 =  Producer.builder()
-                                         .shortname("shortname2")
-                                         .name("IBM")
+                                         .shortname("IBM")
+                                         .name("Internationale Bekleidungs Maschinenhersteller")
                                          .build();
 
         StorageObjectMeta storageObjectMeta = StorageObjectMeta.builder()
                                                       .producer(prod1)
                                                       .name("Wind Fenster")
                                                       .type(Type.IP_PHONE)
-                                                      .osVersion("fast newest")
+                                                      .osVersion("bissale new")
                                                       .consumablesPerBox(6)
                                                       .sfpType(SfpType.MM)
                                                       .wavelength("344")
-                                                      .interfacespeed("bissi schnel")
+                                                      .interfacespeed("bissi schnell")
                                                       .build();
 
         StorageObjectMeta storageObjectMeta2 = StorageObjectMeta.builder()
                                                       .producer(prod2)
                                                       .name("Megnetischetoschtoschiba")
                                                       .type(Type.ROUTER)
-                                                      .osVersion("newest")
+                                                      .osVersion("nicht ganz so new")
                                                       .consumablesPerBox(3)
                                                       .sfpType(SfpType.MM)
                                                       .wavelength("233")

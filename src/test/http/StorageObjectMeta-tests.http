@@ -4,5 +4,19 @@ GET http://localhost:8080/api/storageObjectMeta
 Accept: application/json
 
 ### One StorageObjectMeta
-GET http://localhost:8080/api/storageObjectMeta?nameParam=XX
+GET http://localhost:8080/api/storageObjectMeta?nameParam=enste
 Accept: application/json
+
+### One expl. StorageObjectMeta containing 'etos'
+GET http://localhost:8080/api/storageObjectMeta?nameParam=etos
+Accept: application/json
+
+### One expl. StorageObjectMeta containing 'xx' -> give all
+GET http://localhost:8080/api/storageObjectMeta?nameParam=xx
+Accept: application/json
+
+###One expl. StorageObjectMeta containing '' -> give all
+GET http://localhost:8080/api/storageObjectMeta?nameParam=
+Accept: application/json
+
+###

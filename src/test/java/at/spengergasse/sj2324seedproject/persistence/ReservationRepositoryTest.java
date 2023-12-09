@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ReservationRepositoryTest{
 
     @Autowired
-    private RepositoryRepository repositoryRepository;
+    private ReservationRepository reservationRepository;
 
 
     @Test
@@ -44,7 +44,7 @@ class ReservationRepositoryTest{
                 .completed(false)
                 .build();
 
-        var saved = repositoryRepository.save(reservation);
+        var saved = reservationRepository.save(reservation);
 
         assertThat(saved).isNotNull();
         assertThat(saved).isEqualTo(reservation);
