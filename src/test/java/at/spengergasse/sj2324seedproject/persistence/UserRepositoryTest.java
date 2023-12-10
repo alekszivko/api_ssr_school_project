@@ -4,6 +4,7 @@ import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Profile;
 import at.spengergasse.sj2324seedproject.domain.Role;
 import at.spengergasse.sj2324seedproject.domain.User;
+import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,28 +23,15 @@ class UserRepositoryTest {
     @Test
     void ensureSaveAndReadWorks() {
         //Given
-        User user = User.builder()
-                .email("alex@alex.de")
-                .password("testpassword")
-                .role(Role.ORDERFULLFILLMENT)
-                .createdAt(LocalDateTime.now())
-                .lastLogin(LocalDateTime.now())
-                .isActivated(true)
-                .profile(Profile.builder()
-                        .username("Alex")
-                        .firstName("Alex")
-                        .lastName("Alex")
-                        .phone("+4369912345678")
-                        .build())
-                .build();
+        User userGiven = FixtureFactory.userFixture();
 
         //When
-        var saved = userRepository.save(user);
+        var saved = userRepository.save(userGiven);
 
         //Then
-        assertThat(saved).isNotNull().isSameAs(user);
+        assertThat(saved).isNotNull().isSameAs(userGiven);
         assertThat(saved.getId()).isNotNull().isPositive();
         assertThat(saved.getProfile()).isNotNull();
-        assertThat(user.getProfile()).isEqualTo(saved.getProfile());
+        assertThat(userGiven.getProfile()).isEqualTo(saved.getProfile());
     }
 }

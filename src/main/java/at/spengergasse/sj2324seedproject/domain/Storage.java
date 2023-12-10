@@ -27,6 +27,7 @@ public class Storage extends AbstractPersistable<Long> {
     @Column(name="storage_name", length = 128)  //benennt die Spalte in der DB um und legt die länge auf 128 Zeichen fest
     private @NotNull @NotEmpty @NotBlank String name;
 
+
     @Embedded
     private Address address;
 

@@ -3,10 +3,9 @@ package at.spengergasse.sj2324seedproject.fixture;
 import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class FixtureFactory{
 
@@ -86,6 +85,46 @@ public class FixtureFactory{
                        .build();
     }
 
+    // User - Profile - Reservation - Customer fixtures
+
+    public static User userFixture() {
+        return User.builder()
+                .email("alex@alex.de")
+                .password("testpassword")
+                .role(Role.ORDERFULLFILLMENT)
+                .createdAt(LocalDateTime.now())
+                .lastLogin(LocalDateTime.now())
+                .isActivated(true)
+                .profile(profileFixture())
+                .build();
+    }
+
+    public static Profile profileFixture() {
+        return Profile.builder()
+                .username("Alex")
+                .firstName("Alex")
+                .lastName("Alex")
+                .phone("+4369912345678")
+                .build();
+    }
+
+    public static Customer customerFixture() {
+        return Customer.builder()
+                .connectionNo(1231201310)
+                .build();
+    }
+
+    public static Reservation reservationFixture(User user) {
+        return Reservation.builder()
+                .reservedBy(user)
+                .reservationDescription("Testdescription")
+                .lastModified(LocalDateTime.now())
+                .reservdAt(LocalDateTime.now())
+                .reservedFor(customerFixture())
+                .completed(false)
+                .build();
+
+    }
 
 
 

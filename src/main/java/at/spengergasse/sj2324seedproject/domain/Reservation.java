@@ -28,7 +28,7 @@ public class Reservation extends AbstractPersistable<Long>{
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
     @NotNull
-    private User reservdBy;
+    private User reservedBy;
 
     @Embedded
     @NotNull

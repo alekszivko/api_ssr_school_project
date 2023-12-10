@@ -1,13 +1,12 @@
 package at.spengergasse.sj2324seedproject.persistence;
 
 import at.spengergasse.sj2324seedproject.domain.*;
+import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.testcontainers.utility.TestcontainersConfiguration;
-
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,38 +16,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ReservationRepositoryTest{
 
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private ReservationRepository reservationRepository;
 
 
     @Test
     void ensureSaveAndReadworks() {
-        Reservation reservation = Reservation.builder()
-                .reservdBy(User.builder()
-                        .email("alex@alex.de")
-                        .isActivated(true)
-                        .role(Role.ORDERFULLFILLMENT)
-                        .createdAt(LocalDateTime.now())
-                        .password("cleartext")
-                        .lastLogin(LocalDateTime.now())
-                        .profile(Profile.builder()
-                                .phone("+4369912345678")
-                                .username("xela")
-                                .lastName("ziv")
-                                .firstName("alex")
-                                .build())
-                        .build())
-                .reservationDescription("Testdescription")
-                .lastModified(LocalDateTime.now())
-                .reservdAt(LocalDateTime.now())
-                .reservedFor(Customer.builder().connectionNo(1231201310).build())
-                .completed(false)
-                .build();
+        //Given
+        User userGiven = FixtureFactory.userFixture();
+        var userSaved = userRepository.save(userGiven);
+        Reservation reservationGiven = FixtureFactory.reservationFixture(userSaved);
 
-        var saved = reservationRepository.save(reservation);
+        //When
+        var reservationSaved = reservationRepository.save(reservationGiven);
 
-        assertThat(saved).isNotNull();
-        assertThat(saved).isEqualTo(reservation);
-//        assertThat(saved.getReservdBy()).isNotNull();
-        assertThat(saved.getReservedFor()).isNotNull();
+        //Then
+        assertThat(reservationSaved).isNotNull();
+        assertThat(reservationSaved).isEqualTo(reservationGiven);
+        assertThat(reservationSaved.getReservedBy()).isNotNull();
+        assertThat(reservationSaved.getReservedFor()).isNotNull();
     }
 }
