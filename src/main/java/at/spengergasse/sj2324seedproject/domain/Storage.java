@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Storage extends AbstractPersistable<Long> {
 
 
-    @Column(name="storage_name", length = 128)  //benennt die Spalte in der DB um und legt die länge auf 128 Zeichen fest
+    @Column(name="storage_name", length = 128)
     private @NotNull @NotEmpty @NotBlank String name;
 
 

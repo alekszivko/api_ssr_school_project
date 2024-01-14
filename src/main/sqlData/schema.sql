@@ -12,6 +12,23 @@
         primary key (id)
     );
 
+    create table storage (
+        id bigint not null,
+        name varchar(255),
+        address bigint,
+        primary key (id)
+    )
+
+    create table address (
+        id bigint not null,
+        street varchar(255),
+        number bigint,
+        address_Addition varchar(255),
+        zip_Code bigint,
+        city varchar(255),
+            primary key (id)
+    )
+
     create table storage_object (
         id bigint not null,
         storage_object_meta bigint,

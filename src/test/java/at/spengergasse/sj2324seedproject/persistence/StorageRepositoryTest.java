@@ -1,11 +1,9 @@
 package at.spengergasse.sj2324seedproject.persistence;
 
-import at.spengergasse.sj2324seedproject.domain.Address;
+
 import at.spengergasse.sj2324seedproject.domain.Storage;
-import at.spengergasse.sj2324seedproject.foundation.DateTimeFactory;
-//import at.spengergasse.sj2324seedproject.persistance.StorageRepository;
-import at.spengergasse.sj2324seedproject.persistence.StorageRepository;
-import org.assertj.core.api.Assumptions;
+import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
+
 
 
 import org.junit.jupiter.api.Test;
@@ -13,35 +11,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-// FUNKTIONIERT NOCH NICHT!!! MM 28:11:2023
+
+
 @DataJpaTest
 class StorageRepositoryTest {
 
     @Autowired
-    private StorageRepository repository;
+    private StorageRepository storageRepository;
 
-    private DateTimeFactory dtf = new DateTimeFactory();
+
 
     @Test
     void ensureSaveAndReReadWorks(){
 
-        //given /arrange
-         Storage storage = Storage.builder()
-                 .name("Martins Storage")
-                 .address(Address.builder().street("teststr").number(5).zipcode(1190).city("Vienna").build())
-                 .build();
-
-        // when
-        Assumptions.assumeThat(repository).isNotNull();
-
-        var saved = repository.saveAndFlush(storage);
+        //Given
+         Storage storageGiven = FixtureFactory.storageFixture();
 
 
-        // then /assert
-        assertThat(saved).isNotNull().isSameAs(storage);
+        //When
+        var saved = storageRepository.save(storageGiven);
+
+
+        //Then
+        assertThat(saved).isNotNull().isSameAs(storageGiven);
         assertThat(saved.getId()).isNotNull();
+        assertThat(storageGiven.getAddress()).isEqualTo((saved.getAddress()));
+
     }
 
 

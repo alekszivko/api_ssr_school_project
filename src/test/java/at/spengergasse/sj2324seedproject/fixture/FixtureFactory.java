@@ -126,6 +126,23 @@ public class FixtureFactory{
 
     }
 
+public static Storage storageFixture() {
+        return Storage.builder()
+                .name("Hauptlager DCE4")
+                .address(addressFixture())
+                .build();
+
+}
+
+public static Address addressFixture() {
+        return Address.builder()
+                .street("Kreuzgasse")
+                .number(55)
+                .addressAddition("EG")
+                .zipcode(1180)
+                .city("Wien")
+                .build();
+}
 
 
 

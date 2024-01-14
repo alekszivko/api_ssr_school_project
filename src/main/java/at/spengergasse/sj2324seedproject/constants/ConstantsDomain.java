@@ -11,4 +11,6 @@ public class ConstantsDomain{
     public static final String DEFAULT_MAC = "ff-ff-ff";
     public static final String DEFAULT_MAC_GROUP = "01-00-5e";
 
+
+
 }

@@ -26,10 +26,10 @@
 //                                                     .build())
 //                           .build();
 //
-//        StorageObject sto2 = StorageObject.builder()
+//        StorageObject sto2 = StorageObje.builder()
 //                           .serialNumber("abcd1234")
 //                           .macAddress(ConstantsDomain.DEFAULT_MAC)
-//                           .remark("this is a remark2")
+//                           .remark("this is a remark2")ct
 //                           .projectDevice(true)
 //                           .storedAtCustomer(Customer.builder()
 //                                                     .connectionNo(654321).build())

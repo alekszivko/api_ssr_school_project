@@ -1,0 +1,8 @@
+
+### all storages
+GET http://localhost:8080/api/storage
+Accept: application/json
+
+### all storages with a name containing 'Haupt'
+GET http://localhost:8080/api/storage?namePart=Haupt
+Accept: application/json

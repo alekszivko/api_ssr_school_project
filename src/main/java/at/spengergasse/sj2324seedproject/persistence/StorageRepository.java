@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface StorageRepository extends JpaRepository<Storage, Long> {
-    //Cursor auf StorageRepository -- Tastenkürzel STrg + shift + t ---- Create New test
+    List<Storage> findAllByNameContainingIgnoreCase(String name);
 
 
 
