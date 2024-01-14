@@ -4,6 +4,7 @@ import static at.spengergasse.sj2324seedproject.foundation.Guard.ensureMatchesBa
 import static at.spengergasse.sj2324seedproject.foundation.Guard.ensureMatchesPattern;
 import static at.spengergasse.sj2324seedproject.foundation.Guard.ensureNotNull;
 import static at.spengergasse.sj2324seedproject.foundation.Guard.isNotNull;
+import static at.spengergasse.sj2324seedproject.foundation.Guard.isNull;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 
@@ -68,5 +69,13 @@ class GuardTest {
         ensureNotNull(null, "AAA"));
 
     assertThat(exception).hasMessage("'AAA' must not be null");
+  }
+
+  @Test
+  void ensurePredicatesWork() {
+    assertThat(isNull.test(null)).isTrue();
+    assertThat(isNull.test("y")).isFalse();
+    assertThat(isNotNull.test(null)).isFalse();
+    assertThat(isNotNull.test("y")).isTrue();
   }
 }

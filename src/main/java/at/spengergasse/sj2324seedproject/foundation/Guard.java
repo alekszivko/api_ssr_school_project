@@ -1,9 +1,13 @@
 package at.spengergasse.sj2324seedproject.foundation;
 
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Guard {
+
+  public static final Predicate<? super Object> isNull = (arg) -> arg == null;
+  public static final Predicate<? super Object> isNotNull = isNull.negate();
 
   public static <T> T isNotNull(T object, String name) {
     if (object == null) {
