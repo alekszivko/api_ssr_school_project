@@ -1,6 +1,7 @@
 package at.spengergasse.sj2324seedproject.persistence;
 
 
+import at.spengergasse.sj2324seedproject.domain.Address;
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
 
@@ -9,6 +10,8 @@ import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,5 +43,26 @@ class StorageRepositoryTest {
 
     }
 
+
+
+
+    @Test
+    void ensureFindAllByNameContainingIgnoreCaseWorks(){
+
+        //Given
+        Storage storage1 = new Storage("Hauptlager DCE4", new Address());
+        Storage storage2 = new Storage("Nebenlager Af3", new Address());
+        storageRepository.saveAll(List.of(storage1,storage2));
+
+
+        //When
+        List<Storage> found = storageRepository.findAllByNameContainingIgnoreCase("Hauptlager DCE4");
+
+
+        //Then
+        assertThat(found).containsExactly(storage2);
+
+
+    }
 
 }
