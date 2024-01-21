@@ -4,6 +4,7 @@ import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.persistence.StorageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 
 @Service
-
+@Transactional
 public class StorageService {
 
     private final StorageRepository repository;
