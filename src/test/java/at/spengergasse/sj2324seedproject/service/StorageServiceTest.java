@@ -45,7 +45,25 @@ class StorageServiceTest {
         verify(storageRepository).findAll();
         verifyNoMoreInteractions(storageRepository);
 
+    }
+
+    @Test
+    void ensureFetchStorageWithValidArgumentCallFindAllByNameContainingIgnoreCase(){
+
+        //given
+        Optional<String> searchCriteria = Optional.of("Hauptlalala");
+        var storage = FixtureFactory.storageFixture();
+        when(storageRepository.findAllByNameContainingIgnoreCase(any())).thenReturn(List.of(storage));
+
+        //when
+        var result = storageService.fetchStorage(searchCriteria);
+
+        //then
+        assumeThat(result).containsExactly(storage);
+        verify(storageRepository).findAllByNameContainingIgnoreCase(any());
+        verifyNoMoreInteractions(storageRepository);
 
     }
+
 
 }
