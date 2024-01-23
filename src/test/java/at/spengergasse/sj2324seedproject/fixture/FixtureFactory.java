@@ -79,7 +79,7 @@ public class FixtureFactory {
         .remark("this is a remark1")
         .projectDevice(true)
         .storedAtCustomer(Customer.builder()
-            .connectionNo(123456)
+            .connectionNo("123456")
             .build())
         .build();
   }
@@ -91,7 +91,7 @@ public class FixtureFactory {
         .remark("this is a remark2")
         .projectDevice(true)
         .storedAtCustomer(Customer.builder()
-            .connectionNo(654321).build())
+            .connectionNo("sd123").build())
         .build();
   }
 
@@ -99,6 +99,7 @@ public class FixtureFactory {
 
   public static User userFixture() {
     return User.builder()
+        .userId("U123456789")
         .email("alex@alex.de")
         .password("testpassword")
         .role(Role.ORDERFULLFILLMENT)
@@ -120,7 +121,7 @@ public class FixtureFactory {
 
   public static Customer customerFixture() {
     return Customer.builder()
-        .connectionNo(1231201310)
+        .connectionNo("1231201310")
         .build();
   }
 
@@ -151,7 +152,18 @@ public class FixtureFactory {
         .number(55)
         .addressAddition("EG")
         .zipcode(1180)
-        .city("Wien")
+        .city("Wien").build();
+  }
+
+  public static Reservation reservationFixture() {
+    return Reservation.builder()
+        .reservedBy(userFixture())
+        .reservationId("R123456789")
+        .reservationDescription("Testdescription")
+        .lastModified(LocalDateTime.now())
+        .reservdAt(LocalDateTime.now())
+        .reservedFor(customerFixture())
+        .completed(true)
         .build();
   }
 

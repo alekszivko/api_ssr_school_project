@@ -1,8 +1,13 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +15,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -21,29 +24,31 @@ import java.time.LocalDateTime;
 @Table(name = "app_user")
 public class User extends AbstractPersistable<Long> {
 
-    private static final int EMAIL_MAX_LENGTH = 320;
-    private static final String DATE_TIME_FORMAT = "dd-mm-yyyy HH:mm:ss";
+  private static final int EMAIL_MAX_LENGTH = 320;
+  private static final String DATE_TIME_FORMAT = "dd-mm-yyyy HH:mm:ss";
 
 
-    @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") @Length(max = EMAIL_MAX_LENGTH)
-    private String email;
-    private String password;
+  private String userId;
 
-    @Enumerated(value = EnumType.STRING)
-    @Length(max = 1)
-    private Role role;
+  @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+  @Length(max = EMAIL_MAX_LENGTH)
+  private String email;
+  private String password;
 
-    @DateTimeFormat(pattern = DATE_TIME_FORMAT)
-    private LocalDateTime createdAt;
-    @DateTimeFormat(pattern = DATE_TIME_FORMAT)
-    private LocalDateTime lastLogin;
+  @Enumerated(value = EnumType.STRING)
+  @Length(max = 1)
+  private Role role;
 
-    private boolean isActivated;
+  @DateTimeFormat(pattern = DATE_TIME_FORMAT)
+  private LocalDateTime createdAt;
+  @DateTimeFormat(pattern = DATE_TIME_FORMAT)
+  private LocalDateTime lastLogin;
 
-    @Embedded
-    @Valid
-    private Profile profile;
+  private boolean isActivated;
 
+  @Embedded
+  @Valid
+  private Profile profile;
 
 
 }

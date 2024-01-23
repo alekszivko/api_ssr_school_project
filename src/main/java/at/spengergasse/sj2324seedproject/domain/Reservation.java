@@ -1,8 +1,18 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,36 +20,39 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import java.time.LocalDateTime;
-
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "reservation")
-public class Reservation extends AbstractPersistable<Long>{
+@Table(name = "reservations")
+public class Reservation extends AbstractPersistable<Long> {
 
-    private static final int DESCRIPTION_LENGTH = 350;
+  private static final int DESCRIPTION_LENGTH = 350;
+  private static final int RESERVATION_ID_LENGTH = 10;
 
-    @PastOrPresent
-    private LocalDateTime reservdAt;
+  @Length(min = RESERVATION_ID_LENGTH, max = RESERVATION_ID_LENGTH)
+  @Column(name = "reservation_id", unique = true)
+  @NotNull
+  private String reservationId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
-    @NotNull
-    private User reservedBy;
+  @PastOrPresent
+  private LocalDateTime reservdAt;
 
-    @Embedded
-    @NotNull
-    private Customer reservedFor;
+  @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
+  private User reservedBy;
 
-    @Length(max = DESCRIPTION_LENGTH)
-    private String  reservationDescription;
-    private boolean completed;
+  @Embedded
+  @Valid
+  private Customer reservedFor;
 
-    @PastOrPresent
-    private LocalDateTime lastModified;
+  @Length(max = DESCRIPTION_LENGTH)
+  private String reservationDescription;
+  private boolean completed;
+
+  @PastOrPresent
+  private LocalDateTime lastModified;
 
 }
 
