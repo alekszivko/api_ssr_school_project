@@ -1,0 +1,3 @@
+### All StorageObjects
+GET http://localhost:8080/api/storageObject
+Accept: application/json

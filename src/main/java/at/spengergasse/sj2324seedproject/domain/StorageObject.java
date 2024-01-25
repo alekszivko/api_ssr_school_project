@@ -24,10 +24,9 @@ public class StorageObject extends AbstractPersistable<Long>{
      */
 
 
-//    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @OneToMany
-    private List<User> storedAtUser = new ArrayList<>();
+    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private User storedAtUser;
 
     @ManyToOne( fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "fk_storage_object_meta", foreignKey = @ForeignKey(name = "fk_storageObejctMeta_2_storageObject"))
