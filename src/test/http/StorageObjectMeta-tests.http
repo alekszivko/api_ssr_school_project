@@ -4,7 +4,7 @@ GET http://localhost:8080/api/storageObjectMeta
 Accept: application/json
 
 ### One StorageObjectMeta
-GET http://localhost:8080/api/storageObjectMeta?nameParam=enste
+GET http://localhost:8080/api/storageObjectMeta?nameParam=Megnetischetoschtoschiba
 Accept: application/json
 
 ### One expl. StorageObjectMeta containing 'etos'

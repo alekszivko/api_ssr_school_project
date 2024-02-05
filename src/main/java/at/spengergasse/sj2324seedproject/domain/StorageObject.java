@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Data
@@ -24,19 +24,27 @@ public class StorageObject extends AbstractPersistable<Long>{
      */
 
 
-    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "fk_stored_at_user",
+                foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
+    @ManyToOne(fetch = FetchType.LAZY,
+               cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User storedAtUser;
 
-    @ManyToOne( fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "fk_storage_object_meta", foreignKey = @ForeignKey(name = "fk_storageObejctMeta_2_storageObject"))
-    private StorageObjectMeta storageObjectMeta ;
+    @ManyToOne(fetch = FetchType.LAZY,
+               cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "fk_storage_object_meta",
+                foreignKey = @ForeignKey(name = "fk_storageObejctMeta_2_storageObject"))
+    private StorageObjectMeta storageObjectMeta;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.LAZY,
+               cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //    @OrderColumn //Stores index in sepatate column -> for @ManyToMany(Owning-side) or ManyToOne
     private List<StorageObjectHistory> storageObjectHistories;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "fk_storages", foreignKey = @ForeignKey(name = "fk_storage_2_storageObject"))
+    @ManyToOne(fetch = FetchType.LAZY,
+               cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "fk_storages",
+                foreignKey = @ForeignKey(name = "fk_storage_2_storageObject"))
     private Storage storedStorage;
 
     @Column(name = "status")
@@ -44,8 +52,10 @@ public class StorageObject extends AbstractPersistable<Long>{
     private Status status;
 
 
-    @JoinColumn(name = "fk_reservation", foreignKey = @ForeignKey(name = "fk_storageObject_2_reservation"))
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "fk_reservation",
+                foreignKey = @ForeignKey(name = "fk_storageObject_2_reservation"))
+    @OneToOne(fetch = FetchType.LAZY,
+              cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Reservation reservation;
 
     /*

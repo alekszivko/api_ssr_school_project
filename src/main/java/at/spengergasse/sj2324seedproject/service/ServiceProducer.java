@@ -32,8 +32,10 @@ public class ServiceProducer{
 
             while(iter.hasNext()){
                 Producer temp         = iter.next();
-                String   toUpperCase1 = temp.getName().toUpperCase();
-                String   toUpperCase2 = nameParam.get().toUpperCase();
+                String   toUpperCase1 = temp.getName()
+                                            .toUpperCase();
+                String   toUpperCase2 = nameParam.get()
+                                                 .toUpperCase();
                 if(toUpperCase1.contains(toUpperCase2)){
                     prod2.add(temp);
                 }
@@ -62,19 +64,21 @@ public class ServiceProducer{
 
     }
 
-    public void deleteProducer(String shortName) throws ExceptionProducer{
+    public void deleteProducer(String shortName) throws
+            ExceptionProducer{
         if(shortName != null){
             repositoryProducer.deleteProducerByShortname(shortName);
         }else{
-            throw new ExceptionProducer("shortName is null" );
+            throw new ExceptionProducer("shortName is null");
         }
     }
 
-    public Producer deleteProducerB(String shortName) throws ExceptionProducer{
+    public Producer deleteProducerB(String shortName) throws
+            ExceptionProducer{
         if(shortName != null){
-           return repositoryProducer.deleteProducerByShortname(shortName);
+            return repositoryProducer.deleteProducerByShortname(shortName);
         }else{
-            throw new ExceptionProducer("shortName is null" );
+            throw new ExceptionProducer("shortName is null");
         }
     }
 
@@ -83,6 +87,6 @@ public class ServiceProducer{
     }
 
     public Optional<Producer> findProducerByStringID(String id){
-        return repositoryProducer.findProducerByStringID(id);
+        return repositoryProducer.findProducerById(id);
     }
 }
