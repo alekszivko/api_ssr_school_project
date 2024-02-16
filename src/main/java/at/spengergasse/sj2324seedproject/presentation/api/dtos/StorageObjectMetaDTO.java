@@ -11,10 +11,16 @@ public record StorageObjectMetaDTO(String name,
                                    String interfaceSpeed,
                                    ProducerDTO producerDTO){
     public StorageObjectMetaDTO(StorageObjectMeta storageObjectMeta){
-        this(storageObjectMeta.getName(), storageObjectMeta.getType()
-                                                           .getLongVersion(), storageObjectMeta.getSfpType()
-                                                                                               .getLongVersion(), storageObjectMeta.getOsVersion(), storageObjectMeta.getConsumablesPerBox(), storageObjectMeta.getWavelength(),
-             storageObjectMeta.getInterfacespeed(), new ProducerDTO(storageObjectMeta.getProducer()));
+        this(storageObjectMeta.getName(),
+             storageObjectMeta.getType()
+                              .getLongVersion(),
+             storageObjectMeta.getSfpType()
+                              .getLongVersion(),
+             storageObjectMeta.getOsVersion(),
+             storageObjectMeta.getConsumablesPerBox(),
+             storageObjectMeta.getWavelength(),
+             storageObjectMeta.getInterfacespeed(),
+             new ProducerDTO(storageObjectMeta.getProducer()));
     }
 
 

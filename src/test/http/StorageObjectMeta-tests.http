@@ -19,4 +19,6 @@ Accept: application/json
 GET http://localhost:8080/api/storageObjectMeta?nameParam=
 Accept: application/json
 
-###
+###One expl. StorageObjectMeta containing '' -> give all
+GET http://localhost:8080/api/storageObjectMeta/metaName?name=eta n
+Accept: application/json

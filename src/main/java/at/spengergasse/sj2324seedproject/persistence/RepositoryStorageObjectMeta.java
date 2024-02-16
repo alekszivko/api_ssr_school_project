@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 
 public interface RepositoryStorageObjectMeta extends JpaRepository<StorageObjectMeta, Long>{
 
+    StorageObjectMeta findByNameContainsIgnoreCase(String name);
 }

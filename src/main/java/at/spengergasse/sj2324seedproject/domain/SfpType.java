@@ -8,28 +8,30 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 
-public enum SfpType {
+public enum SfpType{
 
-    SM("sm", "sm"),
-    MM("mm", "mm"),
-    WDM("wdm", "wdm");
-
+    SM("sm",
+       "sm"),
+    MM("mm",
+       "mm"),
+    WDM("wdm",
+        "wdm");
 
 
     private String longVersion;
     private String shortVersion;
 
-//    SM,
-//    MM,
-//    WDM
+    //    SM,
+    //    MM,
+    //    WDM
 
-//    SM("sm", "sm"),
-//    MM("mm", "mm"),
-//    WDM("wdm", "wdm");
+    //    SM("sm", "sm"),
+    //    MM("mm", "mm"),
+    //    WDM("wdm", "wdm");
 
 
-//
-//    private String longVersion;
-//    private String shortVersion;
+    //
+    //    private String longVersion;
+    //    private String shortVersion;
 
 }
