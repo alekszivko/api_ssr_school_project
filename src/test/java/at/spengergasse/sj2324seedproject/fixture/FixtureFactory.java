@@ -115,7 +115,7 @@ public class FixtureFactory {
         .username("Alex")
         .firstName("Alex")
         .lastName("Alex")
-        .phone("+4369912345678")
+        .phone("+436991234567")
         .build();
   }
 

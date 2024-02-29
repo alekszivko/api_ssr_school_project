@@ -36,7 +36,7 @@ public class User extends AbstractPersistable<Long> {
   private String password;
 
   @Enumerated(value = EnumType.STRING)
-  @Length(max = 1)
+  //@Length(max = 1)
   private Role role;
 
   @DateTimeFormat(pattern = DATE_TIME_FORMAT)

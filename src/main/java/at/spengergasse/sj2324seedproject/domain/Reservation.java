@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Data
@@ -31,7 +30,7 @@ public class Reservation extends AbstractPersistable<Long> {
   private static final int DESCRIPTION_LENGTH = 350;
   private static final int RESERVATION_ID_LENGTH = 10;
 
-  @Length(min = RESERVATION_ID_LENGTH, max = RESERVATION_ID_LENGTH)
+  //@Length(min = RESERVATION_ID_LENGTH, max = RESERVATION_ID_LENGTH)
   @Column(name = "reservation_id", unique = true)
   @NotNull
   private String reservationId;
@@ -47,7 +46,7 @@ public class Reservation extends AbstractPersistable<Long> {
   @Valid
   private Customer reservedFor;
 
-  @Length(max = DESCRIPTION_LENGTH)
+  //@Length(max = DESCRIPTION_LENGTH)
   private String reservationDescription;
   private boolean completed;
 

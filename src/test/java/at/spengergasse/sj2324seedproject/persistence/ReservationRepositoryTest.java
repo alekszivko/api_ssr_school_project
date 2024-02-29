@@ -6,6 +6,7 @@ import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.domain.User;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -50,7 +51,8 @@ class ReservationRepositoryTest {
     reservationRepository.save(reservation);
     //Then
     assertThat(
-        reservationRepository.existsByReservationId(reservation.getReservationId())).isTrue();
+        reservationRepository.existsByReservationId(
+            reservation.getReservationId())).isTrue();
     assertThat(
         reservationRepository.existsByReservationId("12312312312312")).isFalse();
   }
@@ -79,7 +81,7 @@ class ReservationRepositoryTest {
     //Then
     assertThat(reservationRepository.getReservationByReservationId(reservationID)).isNotNull();
     assertThat(reservationRepository.getReservationByReservationId(reservationID))
-        .isEqualTo(reservationGiven);
+        .isEqualTo(Optional.of(reservationGiven));
   }
 
   @Test
