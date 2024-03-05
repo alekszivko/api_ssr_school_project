@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
-import at.spengergasse.sj2324seedproject.foundation.IdGenerator;
+import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import at.spengergasse.sj2324seedproject.persistence.ReservationRepository;
 import at.spengergasse.sj2324seedproject.persistence.UserRepository;
 import java.util.List;
@@ -27,7 +27,7 @@ class ReservationServiceTest {
 
   private @Mock ReservationRepository reservationRepository;
   private @Mock UserRepository userRepository;
-  private @Mock IdGenerator idGenerator;
+  private @Mock ApiKeyGenerator idGenerator;
 
   @BeforeEach
   void setup() {

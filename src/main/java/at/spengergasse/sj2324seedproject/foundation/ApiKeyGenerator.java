@@ -1,10 +1,9 @@
 package at.spengergasse.sj2324seedproject.foundation;
 
-import at.spengergasse.sj2324seedproject.exceptions.IdLengthTooShortException;
+import at.spengergasse.sj2324seedproject.exceptions.KeyLengthTooShortException;
 import java.security.SecureRandom;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.stereotype.Component;
 
 //SRC/DOCS: https://de.wikipedia.org/wiki/ISO/IEC_7064#Algorithmus_f%C3%BCr_hybride_Systeme
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Log4j2
 
 @Component
-public class IdGenerator extends AbstractPersistable<Long> {
+public class ApiKeyGenerator {
 
   private static final char[] ALPHABET =
       "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".toCharArray();
@@ -22,26 +21,7 @@ public class IdGenerator extends AbstractPersistable<Long> {
   private static final int BASE = 58;
   private static final int MOD = BASE + 1;
 
-
-  public String getRandomID(int lengthID, String prefix) {
-    Guard.ensureNotNull(prefix, "Prefix");
-    Guard.ensureMatchesBase58(prefix);
-
-    if ((lengthID - 1 - prefix.length()) < 5) {
-      throw new IdLengthTooShortException(
-          "LengthID minus prefix must be at least 4 characters long!");
-    }
-
-    char[] randomString = new char[lengthID - 1 - prefix.length()];
-
-    for (int i = 0; i < lengthID - 2; i++) {
-      randomString[i] = ALPHABET[RANDOM.nextInt(ALPHABET.length)];
-    }
-
-    return prefix + calcChecksum(randomString) + String.valueOf(randomString);
-  }
-
-  public char calcChecksum(char[] randomString) {
+  private static char calcChecksum(char[] randomString) {
 
     int product = MOD - String.valueOf(randomString).chars()
         .mapToObj(c -> (char) c)
@@ -56,16 +36,33 @@ public class IdGenerator extends AbstractPersistable<Long> {
     return ALPHABET[product];
   }
 
-  public boolean isValid(String id) {
+  public static boolean isValid(String id) {
     String checkedId = Guard.ensureMatchesBase58(id);
 
     log.info("Comparing checksum of ID {} with calculated checksum", checkedId.charAt(1));
 
-    return checkedId.charAt(1) == calcChecksum(checkedId.substring(2).toCharArray());
+    return checkedId.charAt(0) == calcChecksum(checkedId.substring(1).toCharArray());
   }
 
-  private int convertZeroToBase(int sum) {
+  private static int convertZeroToBase(int sum) {
     return sum == 0 ? BASE : sum;
+  }
+
+  public String getRandomKey(int lengthID) {
+
+    if ((lengthID) < 5) {
+      throw new KeyLengthTooShortException(
+          "LengthID minus prefix must be at least 5 characters long!");
+    }
+
+    char[] randomString = new char[lengthID - 1];
+
+    for (int i = 0; i < lengthID - 1; i++) {
+      randomString[i] = ALPHABET[RANDOM.nextInt(ALPHABET.length)];
+    }
+
+    var calcChecksum = calcChecksum(randomString);
+    return calcChecksum + String.valueOf(randomString);
   }
 
 }

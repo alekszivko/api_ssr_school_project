@@ -45,7 +45,6 @@ class ReservationRepositoryTest {
   void ensureReservationIDExistsWorks() {
     //Given
     Reservation reservation = FixtureFactory.reservationFixture(FixtureFactory.userFixture());
-    reservation.setReservationId("R123456789");
     reservation.setReservedFor(Customer.builder().connectionNo("1234919").build());
     //When
     reservationRepository.save(reservation);

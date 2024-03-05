@@ -1,5 +1,6 @@
 package at.spengergasse.sj2324seedproject.domain;
 
+import at.spengergasse.sj2324seedproject.foundation.ApiKey;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -30,10 +31,9 @@ public class Reservation extends AbstractPersistable<Long> {
   private static final int DESCRIPTION_LENGTH = 350;
   private static final int RESERVATION_ID_LENGTH = 10;
 
-  //@Length(min = RESERVATION_ID_LENGTH, max = RESERVATION_ID_LENGTH)
   @Column(name = "reservation_id", unique = true)
   @NotNull
-  private String reservationId;
+  private @ApiKey String reservationId;
 
   @PastOrPresent
   private LocalDateTime reservdAt;

@@ -13,11 +13,14 @@ import at.spengergasse.sj2324seedproject.domain.StorageObject;
 import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
 import at.spengergasse.sj2324seedproject.domain.Type;
 import at.spengergasse.sj2324seedproject.domain.User;
+import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FixtureFactory {
+
+  private static final ApiKeyGenerator keyGen = new ApiKeyGenerator();
 
   ///////////////////////////////////// Producer
 
@@ -128,7 +131,7 @@ public class FixtureFactory {
   public static Reservation reservationFixture(User user) {
     return Reservation.builder()
         .reservedBy(user)
-        .reservationId("R123456789")
+        .reservationId(keyGen.getRandomKey(10))
         .reservationDescription("Testdescription")
         .lastModified(LocalDateTime.now())
         .reservdAt(LocalDateTime.now())
