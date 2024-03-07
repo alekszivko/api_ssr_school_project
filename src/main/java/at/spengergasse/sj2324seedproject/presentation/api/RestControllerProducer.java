@@ -2,13 +2,16 @@ package at.spengergasse.sj2324seedproject.presentation.api;
 
 import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.Producer;
+import at.spengergasse.sj2324seedproject.domain.Status;
 import at.spengergasse.sj2324seedproject.exceptions.ExceptionProducer;
 import at.spengergasse.sj2324seedproject.presentation.api.commands.CommandProducer;
 import at.spengergasse.sj2324seedproject.presentation.api.dtos.ProducerDTO;
 import at.spengergasse.sj2324seedproject.service.ServiceProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +19,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.jdbc.support.JdbcUtils.isNumeric;
 
 @RequiredArgsConstructor
 @RestController
@@ -28,15 +29,19 @@ public class RestControllerProducer{
     private final ServiceProducer serviceProducer;
 
     @GetMapping()
-    public List<ProducerDTO> fetchProducers(@RequestParam Optional<String> nameParam){
+    public List<ProducerDTO> fetchProducers(
+            @RequestParam
+            Optional<String> nameParam){
         List<ProducerDTO> result = new ArrayList<>();
-        log.debug("fetchProducers called with nameParam={}", nameParam);
+        log.debug("fetchProducers called with nameParam={}",
+                  nameParam);
         List<Producer> persProducer = serviceProducer.fetchProducer(nameParam);
         for(Producer pro: persProducer){
             ProducerDTO producerDTO = new ProducerDTO(pro);
             result.add(producerDTO);
         }
-        log.debug("fetchProducers returned {} elements", result.size());
+        log.debug("fetchProducers returned {} elements",
+                  result.size());
         return result;
         //        return  persistenceProducer.findAll()
         //                        .stream()
@@ -44,6 +49,18 @@ public class RestControllerProducer{
         //                        .toList();
     }
 
+    @GetMapping(ConstantsDomain.URL_BASE_PRODUCER+ConstantsDomain.URI_ID)
+    public ResponseEntity<ProducerDTO> getProducerById(String idVal){
+//        if(/*idVal != null && */Character.isDigit(Integer.parseInt(idVal))){
+            Long tempId = Long.parseLong(idVal);
+            Producer producerByID = serviceProducer.findProducerByID(tempId);
+//            if(producerByID != null ){
+                return ResponseEntity.ok(new ProducerDTO(producerByID));
+                //            return ResponseEntity.ok(new ProducerDTO(producerByID));
+//            }
+//        }
+//        return ResponseEntity.status(888).build();
+    }
     //    @GetMapping()
     //    public List<ProducerDTO> fetchProducersName(@RequestParam Optional<String> namePart){
     //
@@ -57,42 +74,81 @@ public class RestControllerProducer{
     //    }
 
     @GetMapping(ConstantsDomain.URI_ID)
-    public ResponseEntity<ProducerDTO> getProducer(@PathVariable String id) throws ExceptionProducer{
-        log.debug("getProducer called with id={}", id);
-        long idLong = Long.parseLong(id);
-        int  idTemp = (int) idLong;
+    public ResponseEntity<ProducerDTO> getProducer(
+            @PathVariable
+            String id) throws ExceptionProducer{
 
-        return serviceProducer.findProducerByStringID(id).map(ProducerDTO::new)
-                       .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        //        if(id == null)
+        //            throw new ExceptionProducer("Given ID is null!");
 
-//        if(isNumeric(idTemp)){
-//            var                         prod   = serviceProducer.findProdducerByID(idLong); //2559
-//            ResponseEntity<ProducerDTO> result = ResponseEntity.ok(new ProducerDTO(prod));
-//            return result;
-//        }else{
-//            throw new ExceptionProducer("ID is not numeric");
-//        }
+        log.debug("getProducer called with id={}",
+                  id);
+        //        long idLong = Long.parseLong(id);
+        //        int  idTemp = (int) idLong;
+
+        Producer producerByID = serviceProducer.findProducerByStringID(id);
+        URI      location     = URI.create(ConstantsDomain.URL_BASE_PRODUCER+ConstantsDomain.URI_ID);
+
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.setLocation(location);
+        responseHeader.set("Test Header 1 ACCEPT",
+                           HttpHeaders.ACCEPT);
+
+        if(producerByID == null){
+            responseHeader.set("Test Header 2 IF NONE MATCH",
+                               HttpHeaders.IF_NONE_MATCH);
+            ResponseEntity<ProducerDTO> entity = new ResponseEntity<>(responseHeader,
+                                                                      HttpStatus.NO_CONTENT);
+            return entity;
+        }
+
+        ProducerDTO producerDTO = new ProducerDTO(producerByID);
+
+        ResponseEntity<ProducerDTO> entity = new ResponseEntity<>(producerDTO,
+                                                                  responseHeader,
+                                                                  HttpStatus.OK);
+
+
+        return entity;
+
+        //        if(isNumeric(idTemp)){
+        //            var                         prod   = serviceProducer.findProdducerByID(idLong); //2559
+        //            ResponseEntity<ProducerDTO> result = ResponseEntity.ok(new ProducerDTO(prod));
+        //            return result;
+        //        }else{
+        //            throw new ExceptionProducer("ID is not numeric");
+        //        }
     }
 
     @PostMapping
-    public ResponseEntity<ProducerDTO> createProducer(@RequestBody CommandProducer command){
-        log.debug("createProducer called with {}", command);
-        var producer = serviceProducer.saveProducer(command.shortname(), command.name());
+    public ResponseEntity<ProducerDTO> createProducer(
+            @RequestBody
+            CommandProducer command){
+        log.debug("createProducer called with {}",
+                  command);
+        var producer = serviceProducer.saveProducer(command.shortname(),
+                                                    command.name());
 
         URI uri = URI.create(ConstantsDomain.URL_BASE_PRODUCER+producer.getId());
-        return ResponseEntity.created(uri).body(ProducerDTO.builder()
-                                                        .name(producer.getName())
-                                                        .shortname(producer.getShortname())
-                                                        .build());
+        return ResponseEntity.created(uri)
+                             .body(ProducerDTO.builder()
+                                              .name(producer.getName())
+                                              .shortname(producer.getShortname())
+                                              .build());
     }
 
     @DeleteMapping(ConstantsDomain.URI_SHORTNAME)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<ProducerDTO> delete(@PathVariable String delShortname) throws ExceptionProducer{
-        log.debug("delete called with shortName= {}", delShortname);
+    public ResponseEntity<ProducerDTO> delete(
+            @PathVariable
+            String delShortname) throws ExceptionProducer{
+        log.debug("delete called with shortName= {}",
+                  delShortname);
 
-        var                         producer = serviceProducer.deleteProducerB(delShortname);
-        ResponseEntity<ProducerDTO> prod     = ResponseEntity.ok().body(new ProducerDTO(producer));
-            return prod;
+        var producer = serviceProducer.deleteProducerB(delShortname);
+        ResponseEntity<ProducerDTO> prod = ResponseEntity.ok()
+                                                         .body(new ProducerDTO(producer));
+        return prod;
     }
+
 }

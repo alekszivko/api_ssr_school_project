@@ -4,6 +4,7 @@ import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
 import at.spengergasse.sj2324seedproject.exceptions.StorageObjectMetaAlreadyExistsException;
 import at.spengergasse.sj2324seedproject.presentation.api.commands.CommandStorageObjectMeta;
+import at.spengergasse.sj2324seedproject.presentation.api.dtos.StorageObjectDTO;
 import at.spengergasse.sj2324seedproject.presentation.api.dtos.StorageObjectMetaDTO;
 import at.spengergasse.sj2324seedproject.service.ServiceStorageObjectMeta;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import javax.net.ssl.SSLEngineResult;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -69,13 +71,13 @@ public class RestControllerStorageObjectMeta{
         URI         location        = URI.create(ConstantsDomain.URL_BASE_STO_META+ConstantsDomain.URL_BASE_STO_META_NAME);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(location);
-        responseHeaders.set("HEADER-TESTTTTTTTT+++++",
+        responseHeaders.set("Test Header 1",
                             HttpHeaders.ACCEPT);
 
 
         if(storageObjectMeta == null){
             //            headers.set();
-            responseHeaders.set("HEADER-TESTTTTTTTT-----",
+            responseHeaders.set("Test Header 2",
                                 HttpHeaders.IF_NONE_MATCH);
             ResponseEntity<StorageObjectMetaDTO> entity = new ResponseEntity<>(responseHeaders,
                                                                                HttpStatus.NO_CONTENT);

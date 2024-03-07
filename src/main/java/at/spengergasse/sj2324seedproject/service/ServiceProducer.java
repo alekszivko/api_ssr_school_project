@@ -31,11 +31,11 @@ public class ServiceProducer{
             Iterator<Producer> iter         = producerList.iterator();
 
             while(iter.hasNext()){
-                Producer temp         = iter.next();
-                String   toUpperCase1 = temp.getName()
-                                            .toUpperCase();
-                String   toUpperCase2 = nameParam.get()
-                                                 .toUpperCase();
+                Producer temp = iter.next();
+                String toUpperCase1 = temp.getName()
+                                          .toUpperCase();
+                String toUpperCase2 = nameParam.get()
+                                               .toUpperCase();
                 if(toUpperCase1.contains(toUpperCase2)){
                     prod2.add(temp);
                 }
@@ -54,7 +54,8 @@ public class ServiceProducer{
         return repositoryProducer.findProducerByName(namePart);
     }
 
-    public Producer saveProducer(String shortName, String name){
+    public Producer saveProducer(String shortName,
+                                 String name){
         Producer producer = Producer.builder()
                                     .shortname(shortName)
                                     .name(name)
@@ -64,8 +65,7 @@ public class ServiceProducer{
 
     }
 
-    public void deleteProducer(String shortName) throws
-            ExceptionProducer{
+    public void deleteProducer(String shortName) throws ExceptionProducer{
         if(shortName != null){
             repositoryProducer.deleteProducerByShortname(shortName);
         }else{
@@ -73,8 +73,7 @@ public class ServiceProducer{
         }
     }
 
-    public Producer deleteProducerB(String shortName) throws
-            ExceptionProducer{
+    public Producer deleteProducerB(String shortName) throws ExceptionProducer{
         if(shortName != null){
             return repositoryProducer.deleteProducerByShortname(shortName);
         }else{
@@ -86,7 +85,8 @@ public class ServiceProducer{
         return repositoryProducer.findProducerById(id);
     }
 
-    public Optional<Producer> findProducerByStringID(String id){
-        return repositoryProducer.findProducerById(id);
+    public Producer findProducerByStringID(String id){
+        return repositoryProducer.findProducerById(id)
+                                 .get();
     }
 }

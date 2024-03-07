@@ -64,6 +64,7 @@ public class ServiceStorageObjectMeta{
                                              String sfpType,
                                              String waveLength,
                                              String interfaceSpeed){
+
         StorageObjectMeta storageObjectMeta = StorageObjectMeta.builder()
                                                                .type(Type.valueOf(type))
                                                                .name(name)
@@ -73,6 +74,7 @@ public class ServiceStorageObjectMeta{
                                                                .wavelength(waveLength)
                                                                .interfacespeed(interfaceSpeed)
                                                                .build();
+
         return repositoryStorageObjectMeta.save(storageObjectMeta);
     }
 }

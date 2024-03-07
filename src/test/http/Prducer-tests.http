@@ -19,7 +19,7 @@ GET http://localhost:8080/api/producer?nameParam=
 Accept: application/json
 
 ###One expl. producer with given id
-GET http://localhost:8080/api/producer?id=2
+GET http://localhost:8080/api/producer/api/producer/id?idVal=1
 Accept: application/json
 
 ### Post new producer in json format
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Delete producer with given shortname
-DELETE http://localhost:8080/api/producer?delShortname=NEW_SHORTNAME2
+DELETE http://localhost:8080/api/producer?delShortname=NEW_SHORTNAME3
 #Accept: application/json
 
 ### Delete new producer with id
