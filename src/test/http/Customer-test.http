@@ -1,0 +1,6 @@
+GET http://localhost:8080/api/customers
+Accept: application/json,
+
+###
+GET http://localhost:8080/api/customers?connectionNo=11234
+Accept: application/json

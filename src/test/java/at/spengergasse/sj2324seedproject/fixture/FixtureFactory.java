@@ -14,6 +14,7 @@ import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
 import at.spengergasse.sj2324seedproject.domain.Type;
 import at.spengergasse.sj2324seedproject.domain.User;
 import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
+import at.spengergasse.sj2324seedproject.presentation.api.dtos.CustomerDTO;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -167,6 +168,21 @@ public class FixtureFactory {
         .reservdAt(LocalDateTime.now())
         .reservedFor(customerFixture())
         .completed(true)
+        .build();
+  }
+
+  public static CustomerDTO customerDTOFixture(String id) {
+    return CustomerDTO.builder()
+        .id(id)
+        .firstName("John")
+        .lastName("Doe")
+        .dateOfBirth("01.01.1970")
+        .address("Main Street 1")
+        .country("USA")
+        .city("New York")
+        .zipCode("12345")
+        .phoneNumber("123456789")
+        .email("randomEmail@randomEmail.com")
         .build();
   }
 
