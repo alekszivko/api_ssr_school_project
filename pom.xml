@@ -45,7 +45,19 @@
       <groupId>org.projectlombok</groupId>
       <optional>true</optional>
     </dependency>
-
+    <dependency>
+      <artifactId>querydsl-apt</artifactId>
+      <classifier>jakarta</classifier>
+      <groupId>com.querydsl</groupId>
+      <scope>provided</scope>
+      <version>${querydsl.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>querydsl-jpa</artifactId>
+      <classifier>jakarta</classifier>
+      <groupId>com.querydsl</groupId>
+      <version>${querydsl.version}</version>
+    </dependency>
     <dependency>
       <artifactId>spring-boot-starter-test</artifactId>
       <groupId>org.springframework.boot</groupId>
@@ -95,6 +107,7 @@
   </parent>
   <properties>
     <java.version>21</java.version>
+    <querydsl.version>5.0.0</querydsl.version>
   </properties>
   <version>0.0.1-SNAPSHOT</version>
 </project>

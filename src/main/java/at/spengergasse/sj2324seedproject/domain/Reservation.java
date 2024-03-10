@@ -3,14 +3,12 @@ package at.spengergasse.sj2324seedproject.domain;
 import at.spengergasse.sj2324seedproject.foundation.ApiKey;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
@@ -42,11 +40,8 @@ public class Reservation extends AbstractPersistable<Long> {
   @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
   private User reservedBy;
 
-  @Embedded
-  @Valid
   private Customer reservedFor;
 
-  //@Length(max = DESCRIPTION_LENGTH)
   private String reservationDescription;
   private boolean completed;
 

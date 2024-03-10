@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.persistence;
+package at.spengergasse.sj2324seedproject.persistence.reservations;
 
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import java.util.List;
@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface ReservationRepository extends JpaRepository<Reservation, Long>,
+    CustomReservationRepository {
 
   boolean existsByReservationId(String resID);
 

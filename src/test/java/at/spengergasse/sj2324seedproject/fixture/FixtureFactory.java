@@ -162,7 +162,7 @@ public class FixtureFactory {
   public static Reservation reservationFixture() {
     return Reservation.builder()
         .reservedBy(userFixture())
-        .reservationId("R123456789")
+        .reservationId(keyGen.getRandomKey(10))
         .reservationDescription("Testdescription")
         .lastModified(LocalDateTime.now())
         .reservdAt(LocalDateTime.now())

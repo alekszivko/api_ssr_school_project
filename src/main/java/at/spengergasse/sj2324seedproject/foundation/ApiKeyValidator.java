@@ -3,9 +3,6 @@ package at.spengergasse.sj2324seedproject.foundation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-/**
- * @author Aleksandar Zivkovic
- */
 public class ApiKeyValidator implements ConstraintValidator<ApiKey, String> {
 
   @Override

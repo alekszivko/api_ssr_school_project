@@ -6,7 +6,11 @@ import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.domain.User;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
+import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationProjections.ReservationUser;
+import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationRepository;
+import java.time.LocalDateTime;
 import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -97,5 +101,41 @@ class ReservationRepositoryTest {
 
     assertThat(reservationSaved).isNotNull();
     assertThat(reservationSaved.isCompleted()).isEqualTo(reservationGiven.isCompleted());
+  }
+
+  @Test
+  void ensureReservationsByDateAndOrUserWorks() {
+    Reservation reservation = FixtureFactory.reservationFixture();
+    reservationRepository.saveAndFlush(reservation);
+    reservationRepository.reservationsByDateAndOrUser(Optional.of(reservation.getReservedBy()),
+        LocalDateTime.now().minusDays(20));
+
+  }
+
+  @Test
+  void ensureResrvationsByDateAndOrUserWorksWithDateOnly() {
+    //Given
+    Reservation reservation2 = FixtureFactory.reservationFixture();
+    reservation2.setReservdAt(LocalDateTime.now().minusDays(100));
+
+    var savedReservation = reservationRepository.saveAndFlush(FixtureFactory.reservationFixture());
+    ReservationUser reservationUser = new ReservationUser(savedReservation.getReservationId(),
+        savedReservation.getReservdAt(), savedReservation.getReservedFor(),
+        savedReservation.getReservationDescription());
+    var savedReservation2 = reservationRepository.saveAndFlush(reservation2);
+    ReservationUser reservationUser2 = new ReservationUser(savedReservation2.getReservationId(),
+        savedReservation2.getReservdAt(), savedReservation2.getReservedFor(),
+        savedReservation2.getReservationDescription());
+
+    //When
+
+    var reservations = reservationRepository.reservationsByDateAndOrUser(Optional.empty(),
+        LocalDateTime.now().minusDays(20));
+
+    //Then
+
+    Assertions.assertTrue(reservations.contains(reservationUser));
+    Assertions.assertFalse(reservations.contains(reservationUser2));
+
   }
 }

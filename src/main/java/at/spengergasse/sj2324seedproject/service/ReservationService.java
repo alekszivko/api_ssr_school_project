@@ -3,8 +3,8 @@ package at.spengergasse.sj2324seedproject.service;
 import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
-import at.spengergasse.sj2324seedproject.persistence.ReservationRepository;
 import at.spengergasse.sj2324seedproject.persistence.UserRepository;
+import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +37,8 @@ public class ReservationService {
   public Reservation createReservation(String description, String connectionNo) {
     Reservation reservation = Reservation.builder()
         .reservationId(idGenerator.getRandomKey(10))
-        .reservedFor(Customer.builder().connectionNo(connectionNo).build())
-        .reservationDescription(description).build();
+        .reservedFor(Customer.builder().connectionNo(connectionNo).build()).build();
+//        .reservationDescription(description).build();
 
     return reservationRepository.save(reservation);
   }
