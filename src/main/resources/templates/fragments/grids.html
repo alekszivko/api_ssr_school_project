@@ -1,0 +1,31 @@
+<div class=" justify-center border-2 rounded-xl p-10"
+     th:fragment="reservationGrid (reservations)">
+  <button th:replace="~{fragments/buttons :: TextButton ('Create Reservation')}"></button>
+  <ul class="divide-y divide-gray-100" role="list" th:each="reservation : ${reservations}">
+    <li class="flex justify-between gap-x-6 py-5">
+      <div class="flex min-w-0 gap-x-4">
+        <div class="min-w-0 flex-auto">
+          <p class="text-sm font-semibold leading-6 text-gray-900"
+             th:text="${reservation.reservationId}">
+            ReservationID</p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500"
+             th:text="${reservation.reservationDescription}">Description</p>
+        </div>
+      </div>
+      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end"
+           th:switch="${reservation.completed}">
+        <p class="text-sm leading-6 text-gray-900" th:case="${true}">Completed</p>
+        <p class="text-sm leading-6 text-gray-900" th:case="${false}">Open</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500">Reserved at
+          <time th:text="${#temporals.format(reservation.reservedAt, 'dd.MM.yyyy HH:mm')}">3h
+            ago
+          </time>
+        </p>
+        <div class="py-2">
+          <button th:replace="~{fragments/buttons.html :: EditButton}"></button>
+          <button th:replace="~{fragments/buttons.html :: RemovButton}"></button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
