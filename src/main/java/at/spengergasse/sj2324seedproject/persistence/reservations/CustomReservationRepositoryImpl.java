@@ -27,13 +27,13 @@ public class CustomReservationRepositoryImpl extends QuerydslRepositorySupport i
       @NotBlank LocalDateTime fromDateTime) {
     return
         user.map(c -> from(reservation).where(
-                    reservation.reservedBy.in(user.get()).and(reservation.reservdAt.after(fromDateTime)))
+                    reservation.reservedBy.in(user.get()).and(reservation.reservedAt.after(fromDateTime)))
                 .fetch().stream().map(
-                    res -> new ReservationUser(res.getReservationId(), res.getReservdAt(),
+                    res -> new ReservationUser(res.getReservationId(), res.getReservedAt(),
                         res.getReservedFor(), res.getReservationDescription())).toList())
             .orElse(from(reservation).where(
-                reservation.reservdAt.after(fromDateTime)).fetch().stream().map(
-                res -> new ReservationUser(res.getReservationId(), res.getReservdAt(),
+                reservation.reservedAt.after(fromDateTime)).fetch().stream().map(
+                res -> new ReservationUser(res.getReservationId(), res.getReservedAt(),
                     res.getReservedFor(), res.getReservationDescription())).toList());
   }
 }

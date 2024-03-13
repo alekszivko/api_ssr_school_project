@@ -34,7 +34,7 @@ public class Reservation extends AbstractPersistable<Long> {
   private @ApiKey String reservationId;
 
   @PastOrPresent
-  private LocalDateTime reservdAt;
+  private LocalDateTime reservedAt;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))

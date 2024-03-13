@@ -116,15 +116,15 @@ class ReservationRepositoryTest {
   void ensureResrvationsByDateAndOrUserWorksWithDateOnly() {
     //Given
     Reservation reservation2 = FixtureFactory.reservationFixture();
-    reservation2.setReservdAt(LocalDateTime.now().minusDays(100));
+    reservation2.setReservedAt(LocalDateTime.now().minusDays(100));
 
     var savedReservation = reservationRepository.saveAndFlush(FixtureFactory.reservationFixture());
     ReservationUser reservationUser = new ReservationUser(savedReservation.getReservationId(),
-        savedReservation.getReservdAt(), savedReservation.getReservedFor(),
+        savedReservation.getReservedAt(), savedReservation.getReservedFor(),
         savedReservation.getReservationDescription());
     var savedReservation2 = reservationRepository.saveAndFlush(reservation2);
     ReservationUser reservationUser2 = new ReservationUser(savedReservation2.getReservationId(),
-        savedReservation2.getReservdAt(), savedReservation2.getReservedFor(),
+        savedReservation2.getReservedAt(), savedReservation2.getReservedFor(),
         savedReservation2.getReservationDescription());
 
     //When

@@ -135,7 +135,7 @@ public class FixtureFactory {
         .reservationId(keyGen.getRandomKey(10))
         .reservationDescription("Testdescription")
         .lastModified(LocalDateTime.now())
-        .reservdAt(LocalDateTime.now())
+        .reservedAt(LocalDateTime.now())
         .reservedFor(customerFixture())
         .completed(false)
         .build();
@@ -165,7 +165,7 @@ public class FixtureFactory {
         .reservationId(keyGen.getRandomKey(10))
         .reservationDescription("Testdescription")
         .lastModified(LocalDateTime.now())
-        .reservdAt(LocalDateTime.now())
+        .reservedAt(LocalDateTime.now())
         .reservedFor(customerFixture())
         .completed(true)
         .build();
