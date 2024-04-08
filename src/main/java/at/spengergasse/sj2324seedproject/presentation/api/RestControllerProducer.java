@@ -2,7 +2,6 @@ package at.spengergasse.sj2324seedproject.presentation.api;
 
 import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.Producer;
-import at.spengergasse.sj2324seedproject.domain.Status;
 import at.spengergasse.sj2324seedproject.exceptions.ExceptionProducer;
 import at.spengergasse.sj2324seedproject.presentation.api.commands.CommandProducer;
 import at.spengergasse.sj2324seedproject.presentation.api.dtos.ProducerDTO;
@@ -11,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,15 +49,15 @@ public class RestControllerProducer{
 
     @GetMapping(ConstantsDomain.URL_BASE_PRODUCER+ConstantsDomain.URI_ID)
     public ResponseEntity<ProducerDTO> getProducerById(String idVal){
-//        if(/*idVal != null && */Character.isDigit(Integer.parseInt(idVal))){
-            Long tempId = Long.parseLong(idVal);
-            Producer producerByID = serviceProducer.findProducerByID(tempId);
-//            if(producerByID != null ){
-                return ResponseEntity.ok(new ProducerDTO(producerByID));
-                //            return ResponseEntity.ok(new ProducerDTO(producerByID));
-//            }
-//        }
-//        return ResponseEntity.status(888).build();
+        //        if(/*idVal != null && */Character.isDigit(Integer.parseInt(idVal))){
+        Long     tempId       = Long.parseLong(idVal);
+        Producer producerByID = serviceProducer.findProducerByID(tempId);
+        //            if(producerByID != null ){
+        return ResponseEntity.ok(new ProducerDTO(producerByID));
+        //            return ResponseEntity.ok(new ProducerDTO(producerByID));
+        //            }
+        //        }
+        //        return ResponseEntity.status(888).build();
     }
     //    @GetMapping()
     //    public List<ProducerDTO> fetchProducersName(@RequestParam Optional<String> namePart){

@@ -32,8 +32,8 @@ Content-Type: application/json
 }
 
 ### Delete producer with given shortname
-DELETE http://localhost:8080/api/producer?delShortname=NEW_SHORTNAME3
-#Accept: application/json
+DELETE http://localhost:8080/api/producer/IBM
+Accept: application/json
 
 ### Delete new producer with id
-DELETE http://localhost:8080/api/producer?id=3
+DELETE http://localhost:8080/api/producer/3
