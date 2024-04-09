@@ -2,9 +2,9 @@ package at.spengergasse.sj2324seedproject.service;
 
 import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Reservation;
-import at.spengergasse.sj2324seedproject.foundation.IdGenerator;
-import at.spengergasse.sj2324seedproject.persistence.ReservationRepository;
+import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import at.spengergasse.sj2324seedproject.persistence.UserRepository;
+import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReservationService {
 
   private final ReservationRepository reservationRepository;
-  private final IdGenerator idGenerator;
+  private final ApiKeyGenerator idGenerator;
   private final UserRepository userRepository;
 
 
@@ -36,9 +36,9 @@ public class ReservationService {
   @Transactional
   public Reservation createReservation(String description, String connectionNo) {
     Reservation reservation = Reservation.builder()
-        .reservationId(idGenerator.getRandomID(10, "R"))
-        .reservedFor(Customer.builder().connectionNo(connectionNo).build())
-        .reservationDescription(description).build();
+        .reservationId(idGenerator.getRandomKey(10))
+        .reservedFor(Customer.builder().connectionNo(connectionNo).build()).build();
+//        .reservationDescription(description).build();
 
     return reservationRepository.save(reservation);
   }

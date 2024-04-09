@@ -2,9 +2,12 @@ package at.spengergasse.sj2324seedproject.service;
 
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
-import at.spengergasse.sj2324seedproject.foundation.IdGenerator;
-import at.spengergasse.sj2324seedproject.persistence.ReservationRepository;
+import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import at.spengergasse.sj2324seedproject.persistence.UserRepository;
+
+import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationRepository;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,9 +27,9 @@ class ReservationServiceTest{
 
     private ReservationService reservationService;
 
-    private @Mock ReservationRepository reservationRepository;
-    private @Mock UserRepository        userRepository;
-    private @Mock IdGenerator           idGenerator;
+  private @Mock ReservationRepository reservationRepository;
+  private @Mock UserRepository userRepository;
+  private @Mock ApiKeyGenerator idGenerator;
 
     @BeforeEach
     void setup(){

@@ -19,19 +19,10 @@ class TestContainerConfiguration{
     //        return new OracleContainer(DockerImageName.parse("gvenzl/oracle-xe:21-slim-faststart"));
     //    }
 
-    @Bean
-    @ServiceConnection
-    PostgreSQLContainer<?> postgreSQLContainer(){
-        final int exposedPort = 5432;
-        final int localPort   = 3333;
-        return new PostgreSQLContainer<>(DockerImageName.parse("postgres:16-alpine")).withExposedPorts(exposedPort)
-                                                                                     .withPassword("name")
-                                                                                     .withUsername("pq")
-                                                                                     .withDatabaseName("Samic-test-db")
-                                                                                     .withCreateContainerCmdModifier(cmd -> {
-                                                                                         cmd.withName("Samic_postgres_test_db");
-                                                                                         cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(5432))));
-                                                                                     });
-    }
+  @Bean
+  @ServiceConnection
+  PostgreSQLContainer<?> postgresContainer() {
+    return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
+  }
 
 }

@@ -13,7 +13,7 @@ public record ReservationDTO(
     LocalDateTime lastModified) {
 
   public ReservationDTO(Reservation reservation) {
-    this(reservation.getReservationId(), reservation.getReservdAt(),
+    this(reservation.getReservationId(), reservation.getReservedAt(),
         reservation.getReservedFor(), reservation.getReservationDescription(),
         reservation.isCompleted(), reservation.getLastModified());
   }

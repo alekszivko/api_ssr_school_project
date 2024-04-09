@@ -18,46 +18,30 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @Configuration
-public class TestMainApplication{
+public class TestMainApplication {
 
 
-    //    @Bean
-    //    @ServiceConnection
-    //    OracleContainer oracleContainer(){
-    //        return new OracleContainer(DockerImageName.parse("gvenzl/oracle-xe:21-slim-faststart")).withEnv("APP_USER", "oracle")
-    //                                                                                               .withEnv("APP_USER_PASSWORD", "oracle")
-    //                                                                                               .withUsername("oracle")
-    //                                                                                               .withPassword("oracle")
-    //                                                                                               .withExposedPorts(1521)
-    //                                                                                               .withCreateContainerCmdModifier(cmd -> {
-    //                                                                                                   cmd.withName("samic-oracle");
-    //                                                                                                   cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(1521), new ExposedPort(1521))));
-    //
-    //                                                                                               })
-    //                                                                                               .withReuse(true);
-    //        }
+  public static void main(String[] args) {
+    SpringApplication.from(Sj2324SeedprojectApplication::main)
+        .with(TestMainApplication.class)
+        .run(args);
+  }
 
-    @Bean
-    @ServiceConnection
-    PostgreSQLContainer<?> postgreSQLContainer(){
-        final int exposedPort = 5432;
-        final int localPort   = 5431;
-        return new PostgreSQLContainer<>(DockerImageName.parse("postgres:16-alpine")).withExposedPorts(exposedPort)
-                                                                                     .withUsername("geheim")
-                                                                                     .withPassword("secret")
-                                                                                     .withDatabaseName("Samic-db")
-                                                                                     .withCreateContainerCmdModifier(cmd -> {
-                                                                                         cmd.withName("Samic_postgres");
-                                                                                         cmd.withHostConfig(new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(5432))));
-                                                                                     })
-                                                                                     .withReuse(true);
-
-    }
-
-    public static void main(String[] args){
-        SpringApplication.from(Sj2324SeedprojectApplication::main)
-                         .with(TestMainApplication.class)
-                         .run(args);
-    }
+  @Bean
+  @ServiceConnection
+  PostgreSQLContainer<?> postgresContainer() {
+    return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"))
+        .withDatabaseName("samic")
+        .withUsername("user")
+        .withPassword("password")
+        .withCreateContainerCmdModifier(
+            cmd -> {
+              cmd.withName("samic");
+              cmd.withHostConfig(
+                  new HostConfig()
+                      .withPortBindings(
+                          new PortBinding(Ports.Binding.bindPort(5432), new ExposedPort(5432))));
+            });
+  }
 
 }
