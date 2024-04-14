@@ -26,13 +26,22 @@ public class ServiceProducer{
 
     public List<Producer> fetchProducer(Optional<String> nameParam){
         List<Producer> prod2 = new ArrayList<>();
+
         if(nameParam.isPresent()){
             //            List<Producer> prod = new ArrayList<>();
             //            Producer           oneProd      = persistenceProducer.findOneProducerByName(nameParam);
+
             List<Producer>     producerList = repositoryProducer.findAll();
             Iterator<Producer> iter         = producerList.iterator();
 
-            Example<Producer> proTemp = (Example<Producer>) Producer.builder().name("jljlJ").build();
+            //1. Um Example zu nutzen muss zuerst ein "Probe" erstellt werden!
+            Producer probe = Producer.builder().name(nameParam.get()).build();
+
+            //2. Example<Producer> mit dem "Probe" erstellen.
+            Example<Producer> proTemp = Example.of(probe);
+
+
+
             repositoryProducer.exists(proTemp);
             while(iter.hasNext()){
                 Producer temp = iter.next();

@@ -4,7 +4,6 @@ import at.spengergasse.sj2324seedproject.domain.Producer;
 import at.spengergasse.sj2324seedproject.domain.StorageObject;
 import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
 import at.spengergasse.sj2324seedproject.domain.Type;
-import at.spengergasse.sj2324seedproject.presentation.api.RestControllerStorageObjectMeta;
 import at.spengergasse.sj2324seedproject.service.ServiceProducer;
 import at.spengergasse.sj2324seedproject.service.ServiceStorageObject;
 import at.spengergasse.sj2324seedproject.service.ServiceStorageObjectMeta;
@@ -12,10 +11,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
