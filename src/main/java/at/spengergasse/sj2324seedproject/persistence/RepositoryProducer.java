@@ -8,11 +8,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RepositoryProducer extends JpaRepository<Producer, Long>{
+public interface RepositoryProducer
+        extends JpaRepository<Producer, Long>{
     List<Producer> findProducerByName(Optional<String> namePart);
+
     List<Producer> findProducerByNameContainsIgnoreCase(Optional<String> name);
 
     List<Producer> findByName(Optional<String> nameParam);
+
     Producer findOneProducerByName(Optional<String> name);
+
+    Producer findByShortname(String shortName);
+
+    Producer deleteProducerByShortname(String shortName);
+
+    Producer findProducerById(Long id);
+
+    Optional<Producer> findProducerById(String id);
     //    List<Producer> findAllByNameContainsIgnoreCase(String name);
 }

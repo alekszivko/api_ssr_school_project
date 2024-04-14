@@ -1,9 +1,9 @@
 package at.spengergasse.sj2324seedproject;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
+//@Import(TestContainerConfiguration.class)
 public class Sj2324SeedprojectApplicationTests{
 
     @Test

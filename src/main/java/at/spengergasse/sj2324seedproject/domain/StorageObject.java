@@ -55,7 +55,6 @@ public class StorageObject extends AbstractPersistable<Long> {
   @Enumerated(EnumType.STRING)
   private Status status;
 
-
   @JoinColumn(name = "fk_reservation", foreignKey = @ForeignKey(name = "fk_storageObject_2_reservation"))
   @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private Reservation reservation;

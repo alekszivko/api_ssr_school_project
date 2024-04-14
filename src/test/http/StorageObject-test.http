@@ -1,0 +1,7 @@
+### All StorageObjects
+GET http://localhost:8080/api/storageObjects
+Accept: application/json
+
+### StorageObject GET ALL wit Parameter
+GET http://localhost:8080/api/storageObjects?mac=01-00-5e-11-22-33
+Accept: application/json

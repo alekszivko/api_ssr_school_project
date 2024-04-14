@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>sj2324-seed</artifactId>
   <build>
     <plugins>
@@ -97,6 +97,12 @@
     <dependency>
       <artifactId>spring-boot-starter-hateoas</artifactId>
       <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <groupId>at.spengergasse</groupId>
+      <artifactId>sj2324-seed</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <description>Spring Boot seed project</description>

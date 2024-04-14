@@ -1,6 +1,11 @@
 package at.spengergasse.sj2324seedproject;
 
 
+//import com.github.dockerjava.api.model.ExposedPort;
+//import com.github.dockerjava.api.model.HostConfig;
+//import com.github.dockerjava.api.model.PortBinding;
+//import com.github.dockerjava.api.model.Ports;
+
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
