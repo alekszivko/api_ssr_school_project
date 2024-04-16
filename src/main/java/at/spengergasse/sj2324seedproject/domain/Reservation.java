@@ -40,6 +40,7 @@ public class Reservation extends AbstractPersistable<Long> {
   @JoinColumn(name = "reserved_by", foreignKey = @ForeignKey(name = "fk_user"))
   private User reservedBy;
 
+
   private Customer reservedFor;
 
   private String reservationDescription;

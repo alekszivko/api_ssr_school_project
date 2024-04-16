@@ -1,6 +1,7 @@
 <button
     class="transition ease-in-out delay-150 rounded-full text-blue-700 hover:-translate-y-1 hover:scale-110 "
-    th:fragment="EditButton"
+    th:attr="onclick=|window.location.href='${href}'|"
+    th:fragment="EditButton (href)"
     type="button">
   <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +14,8 @@
 </button>
 <button
     class="transition ease-in-out delay-150 rounded-full text-red-700 hover:-translate-y-1 hover:scale-110 p "
-    th:fragment="RemovButton"
+    th:attr="onclick=|window.location.href='${href}'|"
+    th:fragment="RemoveButton (href)"
     type="button">
   <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -28,4 +30,12 @@
     th:fragment="TextButton (text)" type="button">
 
   <span th:text="${text}">ButtonText</span>
+</button>
+<button class="text-sm font-semibold leading-6 text-gray-900" th:fragment="CancelButton"
+        type="button">Cancel
+</button>
+<button
+    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    th:fragment="SaveButton"
+    type="submit">Save
 </button>

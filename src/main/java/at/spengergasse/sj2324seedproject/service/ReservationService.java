@@ -5,6 +5,7 @@ import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import at.spengergasse.sj2324seedproject.persistence.UserRepository;
 import at.spengergasse.sj2324seedproject.persistence.reservations.ReservationRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -38,13 +39,32 @@ public class ReservationService {
     Reservation reservation = Reservation.builder()
         .reservationId(idGenerator.getRandomKey(10))
         .reservedFor(Customer.builder().connectionNo(connectionNo).build()).build();
-//        .reservationDescription(description).build();
 
-    return reservationRepository.save(reservation);
+    return reservation;
   }
 
   public Optional<Reservation> getReservationByReservationID(String reservationID) {
     return reservationRepository.getReservationByReservationId(reservationID);
+  }
+
+  @Transactional
+  public void removeReservation(String reservationID) {
+    reservationRepository.deleteByReservationId(reservationID);
+  }
+
+
+  @Transactional
+  public Reservation updateReservation(String reservationId, String description,
+      String connectionNo) {
+    return reservationRepository.getReservationByReservationId(reservationId).map(r -> {
+      r.setReservationDescription(description);
+      r.setReservedFor(Customer.builder().connectionNo(connectionNo).build());
+      r.setLastModified(LocalDateTime.now());
+      return r;
+    }).orElseThrow(
+        () -> new IllegalArgumentException("Reservation with reservationId " + reservationId + " "
+            + "not "
+            + "found"));
   }
 
 

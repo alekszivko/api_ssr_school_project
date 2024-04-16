@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.presentation.www;
+package at.spengergasse.sj2324seedproject.presentation.www.reservations;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
+import at.spengergasse.sj2324seedproject.presentation.api.reservations.ReservationDTO;
 import at.spengergasse.sj2324seedproject.service.ReservationService;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,8 @@ class ReservationControllerTest {
 
     mockMvc.perform(get(ReservationController.BASE_URL))
         .andExpect(status().isOk())
-        .andExpect(model().attribute("reservations", reservations))
+        .andExpect(model().attribute("reservations",
+            reservations.stream().map(ReservationDTO::new).toList()))
         .andExpect(view().name("reservations/list"))
         .andDo(print());
   }

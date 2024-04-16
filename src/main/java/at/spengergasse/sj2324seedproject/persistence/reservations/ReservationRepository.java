@@ -18,4 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
   Optional<Reservation> getReservationByReservationId(String reservationId);
 
   List<Reservation> getReservationsByCompleted(Boolean completed);
+
+  void deleteByReservationId(String reservationId);
+
 }

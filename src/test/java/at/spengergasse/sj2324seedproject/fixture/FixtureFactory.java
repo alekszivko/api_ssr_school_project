@@ -1,7 +1,6 @@
 package at.spengergasse.sj2324seedproject.fixture;
 
 import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
-
 import at.spengergasse.sj2324seedproject.domain.Address;
 import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Producer;
@@ -20,132 +19,131 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FixtureFactory{
+public class FixtureFactory {
 
   private static final ApiKeyGenerator keyGen = new ApiKeyGenerator();
 
   ///////////////////////////////////// Producer
 
 
-    public static Producer give_me_a_producer1(){
-        return Producer.builder()
-                       .shortname("MS")
-                       .name("Micro Soft")
-                       .build();
-    }
+  public static Producer give_me_a_producer1() {
+    return Producer.builder()
+        .shortname("MS")
+        .name("Micro Soft")
+        .build();
+  }
 
-    public static Producer give_me_a_producer2(){
-        return Producer.builder()
-                       .shortname("IBM")
-                       .name("Internationale Bekleidungs Maschinenhersteller")
-                       .build();
-    }
+  public static Producer give_me_a_producer2() {
+    return Producer.builder()
+        .shortname("IBM")
+        .name("Internationale Bekleidungs Maschinenhersteller")
+        .build();
+  }
 
-    ///////////////////////////////////// StorageObjectMeta
+  ///////////////////////////////////// StorageObjectMeta
 
-    public static StorageObjectMeta give_me_a_storageObjectMeta1(){
-        return StorageObjectMeta.builder()
-                                .producer(give_me_a_producer1())
-                                .name("meta name1")
-                                .type(Type.IP_PHONE)
-                                .osVersion("version1")
-                                .consumablesPerBox(2)
-                                .sfpType(SfpType.MM)
-                                .wavelength("1550nm")
-                                .interfacespeed("100-Mbps")
-                                .build();
-    }
+  public static StorageObjectMeta give_me_a_storageObjectMeta1() {
+    return StorageObjectMeta.builder()
+        .producer(give_me_a_producer1())
+        .name("meta name1")
+        .type(Type.IP_PHONE)
+        .osVersion("version1")
+        .consumablesPerBox(2)
+        .sfpType(SfpType.MM)
+        .wavelength("1550nm")
+        .interfacespeed("100-Mbps")
+        .build();
+  }
 
-    public static StorageObjectMeta give_me_a_storageObjectMeta2(){
-        return StorageObjectMeta.builder()
-                                .producer(give_me_a_producer2())
-                                .name("meta name2")
-                                .type(Type.IP_PHONE)
-                                .osVersion("version2")
-                                .consumablesPerBox(2)
-                                .sfpType(SfpType.MM)
-                                .wavelength("1310nm")
-                                .interfacespeed("1000-Mbps")
-                                .build();
-    }
+  public static StorageObjectMeta give_me_a_storageObjectMeta2() {
+    return StorageObjectMeta.builder()
+        .producer(give_me_a_producer2())
+        .name("meta name2")
+        .type(Type.IP_PHONE)
+        .osVersion("version2")
+        .consumablesPerBox(2)
+        .sfpType(SfpType.MM)
+        .wavelength("1310nm")
+        .interfacespeed("1000-Mbps")
+        .build();
+  }
 
-    public static StorageObjectMeta give_me_a_storageObjectMeta3(){
-        return StorageObjectMeta.builder()
-                                .name("meta name2")
-                                //                                .type(Type.IP_PHONE)
-                                .osVersion("version2")
-                                //                                .consumablesPerBox(2)
-                                //                                .sfpType(SfpType.MM)
-                                //                                .wavelength("1310nm")
-                                //                                .interfacespeed("1000-Mbps")
-                                .build();
-    }
+  public static StorageObjectMeta give_me_a_storageObjectMeta3() {
+    return StorageObjectMeta.builder()
+        .name("meta name2")
+        //                                .type(Type.IP_PHONE)
+        .osVersion("version2")
+        //                                .consumablesPerBox(2)
+        //                                .sfpType(SfpType.MM)
+        //                                .wavelength("1310nm")
+        //                                .interfacespeed("1000-Mbps")
+        .build();
+  }
 
-    public static List<Producer> give_me_a_List_of_producer(){
-        List<Producer> producersListe = new ArrayList<>();
-        producersListe.add(give_me_a_producer1());
-        producersListe.add(give_me_a_producer2());
-        return producersListe;
-    }
+  public static List<Producer> give_me_a_List_of_producer() {
+    List<Producer> producersListe = new ArrayList<>();
+    producersListe.add(give_me_a_producer1());
+    producersListe.add(give_me_a_producer2());
+    return producersListe;
+  }
 
-    ///////////////////////////////////// StorageObject
+  ///////////////////////////////////// StorageObject
 
-    public static StorageObject give_me_a_storageObject1(){
-        return StorageObject.builder()
-                            .serialNumber("abcd1234")
-                            .macAddress(ConstantsDomain.DEFAULT_MAC)
-                            .remark("this is a remark1")
-                            .projectDevice(true)
-                            .storedAtCustomer(Customer.builder()
-                                                      .connectionNo("123456")
-                                                      .build())
-                            .build();
-    }
+  public static StorageObject give_me_a_storageObject1() {
+    return StorageObject.builder()
+        .serialNumber("abcd1234")
+        .macAddress(ConstantsDomain.DEFAULT_MAC)
+        .remark("this is a remark1")
+        .projectDevice(true)
+        .storedAtCustomer(Customer.builder()
+            .connectionNo("123456")
+            .build())
+        .build();
+  }
 
-    public static StorageObject give_me_a_storageObject2(){
-        return StorageObject.builder()
-                            .serialNumber("abcd1234")
-                            .macAddress(ConstantsDomain.DEFAULT_MAC)
-                            .remark("this is a remark2")
-                            .projectDevice(true)
-                            .storedAtCustomer(Customer.builder()
-                                                      .connectionNo("sd123")
-                                                      .build())
-                            .build();
-    }
+  public static StorageObject give_me_a_storageObject2() {
+    return StorageObject.builder()
+        .serialNumber("abcd1234")
+        .macAddress(ConstantsDomain.DEFAULT_MAC)
+        .remark("this is a remark2")
+        .projectDevice(true)
+        .storedAtCustomer(Customer.builder()
+            .connectionNo("sd123")
+            .build())
+        .build();
+  }
 
-    // User - Profile - Reservation - Customer fixtures
+  // User - Profile - Reservation - Customer fixtures
 
   // User - Profile - Reservation - Customer fixtures
 
   public static User userFixture() {
     return User.builder()
-               .userId("U123456789")
-               .email("alex@alex.de")
-               .password("testpassword")
-               .role(Role.ORDERFULLFILLMENT)
-               .createdAt(LocalDateTime.now())
-               .lastLogin(LocalDateTime.now())
-               .isActivated(true)
-               .profile(profileFixture())
-               .build();
+        .userId("U123456789")
+        .email("alex@alex.de")
+        .password("testpassword")
+        .role(Role.ORDERFULLFILLMENT)
+        .createdAt(LocalDateTime.now())
+        .lastLogin(LocalDateTime.now())
+        .isActivated(true)
+        .profile(profileFixture())
+        .build();
   }
 
 
-
-    public static Profile profileFixture(){
-        return Profile.builder()
-                      .username("Alex")
-                      .firstName("Alex")
-                      .lastName("Alex")
-                      .phone("+4369912345678")
-                      .build();
-    }
+  public static Profile profileFixture() {
+    return Profile.builder()
+        .username("Alex")
+        .firstName("Alex")
+        .lastName("Alex")
+        .phone("+436991234567")
+        .build();
+  }
 
   public static Customer customerFixture() {
     return Customer.builder()
-                   .connectionNo("1231201310")
-                   .build();
+        .connectionNo("1231201310")
+        .build();
   }
 
   public static Reservation reservationFixture(User user) {
@@ -161,23 +159,24 @@ public class FixtureFactory{
   }
 
 
-    public static Storage storageFixture(){
-        return Storage.builder()
-                      .name("Hauptlager DCE4")
-                      .address(addressFixture())
-                      .build();
+  public static Storage storageFixture() {
+    return Storage.builder()
+        .name("Hauptlager DCE4")
+        .address(addressFixture())
+        .build();
 
-    }
+  }
 
-    public static Address addressFixture(){
-        return Address.builder()
-                      .street("Kreuzgasse")
-                      .number(55)
-                      .addressAddition("EG")
-                      .zipcode(1180)
-                      .city("Wien")
-                      .build();
-    }
+  public static Address addressFixture() {
+    return Address.builder()
+        .street("Kreuzgasse")
+        .number(55)
+        .addressAddition("EG")
+        .zipcode(1180)
+        .city("Wien")
+        .build();
+  }
+
   public static Reservation reservationFixture() {
     return Reservation.builder()
         .reservedBy(userFixture())
