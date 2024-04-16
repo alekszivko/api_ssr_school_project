@@ -50,4 +50,19 @@ public class Guard {
   public static String ensureMatchesBase58(String argument) {
     return ensureMatchesPattern(argument, "[A-HJ-NP-Za-km-z1-9]*", "argument");
   }
+
+  public static Long ensurePositiveValue(Long val){
+    if(val < 0){
+      throw new IllegalArgumentException("Given number '%s' is negativ".formatted(val));
+    }
+    return val;
+  }
+
+  public static boolean isPositive(Long val){
+    if(ensurePositiveValue(val) != null){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

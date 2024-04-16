@@ -47,12 +47,12 @@
         primary key (id)
     );
 
-    alter table if exists storage_object 
-       add constraint StorageObject_2_StorageObejctMeta 
-       foreign key (storage_object_meta) 
+    alter table if exists storage_object
+       add constraint StorageObject_2_StorageObejctMeta
+       foreign key (storage_object_meta)
        references storage_object_meta;
 
-    alter table if exists storage_object_meta 
-       add constraint FK_producer_2_storageObjectMeta 
-       foreign key (fk_producer) 
+    alter table if exists storage_object_meta
+       add constraint FK_producer_2_storageObjectMeta
+       foreign key (fk_producer)
        references producer;

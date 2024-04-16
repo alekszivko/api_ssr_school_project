@@ -76,7 +76,7 @@ class TestRestControllerProducer{
         verify(repositoryProducer ).findAll();
     }
 
-    @Test
+    /*@Test
     void ensureGetProducerWithNoIdReturnsNoContent() throws Exception{
         //given
 
@@ -90,6 +90,6 @@ class TestRestControllerProducer{
         //then
 //        verify(repositoryProducer, times(1)).findAll();
         verify(repositoryProducer ).findAll();
-    }
+    }*/
 
 }

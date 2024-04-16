@@ -2,6 +2,7 @@ package at.spengergasse.sj2324seedproject.service;
 
 import at.spengergasse.sj2324seedproject.domain.Producer;
 import at.spengergasse.sj2324seedproject.exceptions.ExceptionProducer;
+import at.spengergasse.sj2324seedproject.foundation.Guard;
 import at.spengergasse.sj2324seedproject.persistence.RepositoryProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -82,7 +80,7 @@ public class ServiceProducer{
         if(shortName != null){
             repositoryProducer.deleteProducerByShortname(shortName);
         }else{
-            throw new ExceptionProducer("shortName is null");
+            throw new ExceptionProducer("ShortName is null");
         }
     }
 
@@ -90,16 +88,19 @@ public class ServiceProducer{
         if(shortName != null){
             return repositoryProducer.deleteProducerByShortname(shortName);
         }else{
-            throw new ExceptionProducer("shortName is null");
+            throw new ExceptionProducer("ShortName is null");
         }
     }
 
     public Producer findProducerByID(Long id){
-        return repositoryProducer.findProducerById(id);
+        if(Guard.isPositive(id)){
+            return repositoryProducer.findProducerById(id);
+        }else{
+            throw new NoSuchElementException("Producer id is negativ; therefore, no value is available!");
+        }
     }
 
-    public Producer findProducerByStringID(String id){
-        return repositoryProducer.findProducerById(id)
-                                 .get();
-    }
+//    public Producer findProducerByStringID(String id){
+//        return repositoryProducer.findProducerById(Long.valueOf(id));
+//    }
 }

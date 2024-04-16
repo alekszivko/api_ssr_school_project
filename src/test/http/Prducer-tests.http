@@ -7,7 +7,7 @@ GET http://localhost:8080/api/producer?nameParam=o S
 Accept: application/json
 
 ### One expl. producer containing 'bm'
-GET http://localhost:8080/api/producer?nameParam=inenh
+GET http://localhost:8080/api/producer?nameParam=NEW_SHORTNSME4
 Accept: application/json
 
 ### One expl. producer containing 'xx' -> give all
@@ -19,7 +19,7 @@ GET http://localhost:8080/api/producer?nameParam=
 Accept: application/json
 
 ###One expl. producer with given id
-GET http://localhost:8080/api/producer/api/producer/id?idVal=1
+GET http://localhost:8080/api/producer/api/producer/id?idVal=0
 Accept: application/json
 
 ### Post new producer in json format
@@ -27,8 +27,8 @@ POST http://localhost:8080/api/producer
 Content-Type: application/json
 
 {
-  "shortname": "NEW_SHORTNSME3",
-    "name": "NEW_NAME3"
+  "shortname": "NEW_SHORTNSME4",
+    "name": "NEW_NAME4"
 }
 
 ### Delete producer with given shortname

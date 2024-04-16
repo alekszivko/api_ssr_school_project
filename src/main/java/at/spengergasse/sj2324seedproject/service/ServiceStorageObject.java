@@ -25,7 +25,7 @@ public class ServiceStorageObject{
         return repositoryStorageObject.findAll();
     }
 
-    public Stream<StorageObject> fetchStorageOBjectsStream(Optional<String> searchParam){
+    public Stream<StorageObject> fetchStorageObjectsStream(Optional<String> searchParam){
         return repositoryStorageObject.findAll()
                                       .stream();
     }

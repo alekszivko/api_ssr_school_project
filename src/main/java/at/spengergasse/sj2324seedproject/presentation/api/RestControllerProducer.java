@@ -9,6 +9,7 @@ import at.spengergasse.sj2324seedproject.service.ServiceProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(ConstantsDomain.URL_BASE_PRODUCER)
 @Log4j2
+@ComponentScan(basePackages = {"at.spengergasse.sj2324seedproject.persistence"})
 public class RestControllerProducer{
 
     @Autowired
@@ -76,17 +78,19 @@ public class RestControllerProducer{
     @GetMapping(ConstantsDomain.URI_ID)
     public ResponseEntity<ProducerDTO> getProducer(
             @PathVariable
-            String id) throws ExceptionProducer{
+            String id){
 
         //        if(id == null)
         //            throw new ExceptionProducer("Given ID is null!");
 
         log.debug("getProducer called with id={}",
                   id);
-        //        long idLong = Long.parseLong(id);
-        //        int  idTemp = (int) idLong;
 
-        Producer producerByID = serviceProducer.findProducerByStringID(id);
+        Long tempID = -1L;
+        if(id.contains("01234567890")){
+            tempID = Long.parseLong(id);
+        }
+        Producer producerByID = serviceProducer.findProducerByID(tempID);
         URI      location     = URI.create(ConstantsDomain.URL_BASE_PRODUCER+ConstantsDomain.URI_ID);
 
         HttpHeaders responseHeader = new HttpHeaders();
@@ -149,6 +153,6 @@ public class RestControllerProducer{
         ResponseEntity<ProducerDTO> prod = ResponseEntity.ok()
                                                          .body(new ProducerDTO(producer));
         return prod;
-    }
+    }//TODO T011051
 
 }

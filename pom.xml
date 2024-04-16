@@ -37,6 +37,10 @@
       <groupId>org.springframework.boot</groupId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
       <artifactId>spring-boot-starter-web</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
@@ -97,12 +101,6 @@
     <dependency>
       <artifactId>spring-boot-starter-hateoas</artifactId>
       <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <dependency>
-      <groupId>at.spengergasse</groupId>
-      <artifactId>sj2324-seed</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
   <description>Spring Boot seed project</description>

@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,7 +37,7 @@ public class Mockito_1{
     }
 
     @Test
-    void test1() throws Exception{
+    void test1(){
         Producer producer = Producer.builder()
                                     .name("Producer")
                                     .shortname("PR")
@@ -52,9 +53,9 @@ public class Mockito_1{
                                                                .osVersion("12.1.3")
                                                                .build();
 
-        when(serviceProducer.findProducerByStringID(anyString())).thenReturn(producer);
+        when(serviceProducer.findProducerByID(anyLong())).thenReturn(producer);
 
-        assertNotNull(serviceProducer.findProducerByStringID("!"));
+        assertNotNull(serviceProducer.findProducerByID(1L));
     }
 
     //////////////////////////////////////Test End ///////////////////////////////////////////

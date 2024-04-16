@@ -24,6 +24,6 @@ public interface RepositoryProducer
 
     Producer findProducerById(Long id);
 
-    Optional<Producer> findProducerById(String id);
+//    Optional<Producer> findProducerById(String id);
     //    List<Producer> findAllByNameContainsIgnoreCase(String name);
 }

@@ -1,17 +1,15 @@
 package at.spengergasse.sj2324seedproject.domain;
 
-
-import at.spengergasse.sj2324seedproject.constants.*;
+import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import java.util.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
