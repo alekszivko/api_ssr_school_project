@@ -36,11 +36,16 @@ public class ReservationService {
 
   @Transactional
   public Reservation createReservation(String description, String connectionNo) {
-    Reservation reservation = Reservation.builder()
+    return reservationRepository.save(Reservation.builder()
         .reservationId(idGenerator.getRandomKey(10))
-        .reservedFor(Customer.builder().connectionNo(connectionNo).build()).build();
-
-    return reservation;
+        .reservationDescription(description)
+        .reservedAt(LocalDateTime.now())
+        .completed(false)
+        .lastModified(LocalDateTime.now())
+        .reservedFor(Customer.builder()
+            .connectionNo(connectionNo)
+            .build())
+        .build());
   }
 
   public Optional<Reservation> getReservationByReservationID(String reservationID) {
@@ -55,11 +60,12 @@ public class ReservationService {
 
   @Transactional
   public Reservation updateReservation(String reservationId, String description,
-      String connectionNo) {
+      String connectionNo, boolean completed) {
     return reservationRepository.getReservationByReservationId(reservationId).map(r -> {
       r.setReservationDescription(description);
       r.setReservedFor(Customer.builder().connectionNo(connectionNo).build());
       r.setLastModified(LocalDateTime.now());
+      r.setCompleted(completed);
       return r;
     }).orElseThrow(
         () -> new IllegalArgumentException("Reservation with reservationId " + reservationId + " "

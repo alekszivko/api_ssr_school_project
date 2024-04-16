@@ -1,17 +1,10 @@
 package at.spengergasse.sj2324seedproject.presentation.www.reservations;
 
-import at.spengergasse.sj2324seedproject.domain.Customer;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record CreateReservationForm(String connectionNo, String reservationDescription) {
 
-@Data
-@NoArgsConstructor
-public class CreateReservationForm {
+  public static CreateReservationForm create() {
+    return new CreateReservationForm("", "");
+  }
 
-  @NotBlank
-  Customer reservedFor;
-  String reservationDescription;
-  boolean completed;
-
+  ;
 }

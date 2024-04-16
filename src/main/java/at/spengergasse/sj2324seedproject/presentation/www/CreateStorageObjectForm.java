@@ -5,10 +5,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CreateStorageObjectForm{
-    private String serialNr;
-    private String mac;
-    private String remark;
-    private String projectDev;
-    private String storedAtCu;
+public class CreateStorageObjectForm {
+
+  private String serialNr;
+  private String mac;
+  private String remark;
+  private String projectDev;
+  private String storedAtCu;
+
+
 }

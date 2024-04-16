@@ -7,7 +7,7 @@
   <title th:text="#{i18n.reservation.new.title}"> title </title>
 </head>
 <body class="w-screen min-h-screen py-20 ">
-<h1 class="flex justify-center text-4xl" th:text="#{i18n.reservation.new.title}">Create
+<h1 class="flex justify-center text-4xl" th:text="#{i18n.reservation.edit.title}">Create
   Reservations</h1>
 <div class="flex justify-center py-10">
   <form method="post" th:object="${form}">
@@ -15,7 +15,7 @@
       <div class="border-b border-gray-900/10 pb-12">
 
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div class="sm:col-span-4">
+          <div class="sm:col-span-3">
             <label class="block text-sm font-medium leading-6 text-gray-900"
                    for="connectionNo" th:text="#{i18n.reservation.connectionNo}">Customer -
               ConnectionNumber</label>
@@ -31,7 +31,20 @@
               </div>
             </div>
           </div>
+          <div class="sm:col-span-3">
+            <label for="checkbox"></label>
+            <div class="block text-sm font-medium leading-6 text-gray-900"
+                 id="checkbox"><span th:text="#{i18n.reservation.status}"></span>
+            </div>
+            <br>
+            <label for="completed" th:text="#{i18n.reservation.status.closed}">
+            </label>
+            <input id="completed" style="margin: 0px 0px 1px 10px "
+                   th:checked="*{completed}"
+                   th:field="*{completed}"
+                   type="checkbox">
 
+          </div>
           <div class="col-span-full">
             <label class="block text-sm font-medium leading-6 text-gray-900" for="description"
                    th:text="#{i18n.reservation.description}">Beschreibung</label>
@@ -42,6 +55,7 @@
                 rows="3" th:field="*{description}"></textarea>
             </div>
           </div>
+
 
         </div>
       </div>
@@ -54,3 +68,4 @@
 </div>
 </body>
 </html>
+

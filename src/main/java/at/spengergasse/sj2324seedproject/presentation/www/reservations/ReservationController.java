@@ -54,7 +54,7 @@ public class ReservationController {
   @GetMapping("/new")
   public ModelAndView showNewReservationForm() {
     var mav = new ModelAndView();
-    mav.addObject("form", new CreateReservationForm());
+    mav.addObject("form", CreateReservationForm.create());
     mav.setViewName("reservations/new");
     return mav;
   }
@@ -69,7 +69,21 @@ public class ReservationController {
     }
 
     reservationService.updateReservation(id, form.description(),
-        form.connectionNo());
+        form.connectionNo(), form.completed());
+
+    return "redirect:/reservations";
+  }
+
+  @PostMapping("/new")
+  public String handleNewReservationFormSubmission(
+      @Valid @ModelAttribute(name = "form") CreateReservationForm form,
+      BindingResult bindingResult) {
+
+    if (bindingResult.hasErrors()) {
+      return "reservations/new";
+    }
+
+    reservationService.createReservation(form.reservationDescription(), form.connectionNo());
 
     return "redirect:/reservations";
   }
