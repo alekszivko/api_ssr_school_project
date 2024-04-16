@@ -26,7 +26,7 @@ public class ControllerStorageObject {
   public String getStorageObject(Model model) {
     List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
     model.addAttribute("storageObjects", storageObjects);
-    return "list";
+    return "storageObject/list";
   }
 
   @GetMapping("/new")
