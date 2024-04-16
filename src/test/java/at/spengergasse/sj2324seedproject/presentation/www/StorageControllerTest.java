@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.fixture.FixtureFactory;
 import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
+import at.spengergasse.sj2324seedproject.presentation.www.storage.StorageController;
 import at.spengergasse.sj2324seedproject.service.StorageService;
 import java.util.List;
 import java.util.Optional;

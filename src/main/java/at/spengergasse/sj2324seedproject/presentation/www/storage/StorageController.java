@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.presentation.www;
+package at.spengergasse.sj2324seedproject.presentation.www.storage;
 
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
