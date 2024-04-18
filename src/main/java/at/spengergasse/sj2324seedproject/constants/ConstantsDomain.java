@@ -17,4 +17,8 @@ public class ConstantsDomain{
     public static final String URI_BASE_STORAGEOBJECT_MAC = "/{mac}";
     public static final String URL_BASE_STO_META          = "/api/storageObjectMeta";
     public static final String URL_BASE_STO_META_NAME     = "/metaName";
+
+//    #######################################################################################
+    public static final String TEMPLATE_STOO_BASE = "/storageObjects";
+    public static final String TEMPLATE_STOO_NEW = "/new";
 }

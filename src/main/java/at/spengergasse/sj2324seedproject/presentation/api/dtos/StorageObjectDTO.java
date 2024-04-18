@@ -13,7 +13,7 @@ public record StorageObjectDTO(String serialNumber,
                                //                               UserDTO userDTO,
                                String status){
     public StorageObjectDTO(StorageObject storageObject){
-        this(storageObject.getSerialNumber(), storageObject.getMacAddress(), storageObject.getRemark(), storageObject.isProjectDevice(), storageObject.getStoredAtCustomer(), new StorageObjectMetaDTO(storageObject.getStorageObjectMeta()),
+        this(storageObject.getSerialNumber(), storageObject.getMacAddress(), storageObject.getRemark(), storageObject.getProjectDevice(), storageObject.getStoredAtCustomer(), new StorageObjectMetaDTO(storageObject.getStorageObjectMeta()),
                 /*new StorageDTO(storageObject.getStoredStorage()),*/ /*new UserDTO(storageObject.getStoredAtUser()),*/ storageObject.getStatus()
                                                                                                                                      .name());
     }

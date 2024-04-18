@@ -74,11 +74,14 @@ public class StorageObject extends AbstractPersistable<Long> {
   private String remark = ConstantsDomain.DEFAULT_VALUE;
 
   @Column(name = "project_device")
-  private boolean projectDevice;
+  private Boolean projectDevice;
 
 
   @Column(name = "stored_at_customer")
   private Customer storedAtCustomer;
+
+  @Column(name = "uuid-key field")
+  private String apiKeyID;
 
 }
 

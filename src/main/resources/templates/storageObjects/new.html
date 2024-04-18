@@ -10,27 +10,32 @@
 <body>
 <div class="container">
     <h1 th:text="#{storageObject.new.title}">Erzeuge Lager Object</h1>
-    <form>
+    <form method="post" th:object="${form}">
         <div class="mb-3">
-            <label for="serialNumber" class="form-label">Serialnumber</label>
-            <input type="email" class="form-control" id="serialNumber">
+            <label for="serialNumber" class="form-label" th:text="#{storageObject.serialNR}">Serialnumber</label>
+            <input type="text" class="form-control" id="serialNumber" th:field="*{serialNr}">
             <!--                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
         </div>
         <div class="mb-3">
-            <label for="macAddress" class="form-label">MacAddress</label>
-            <input type="password" class="form-control" id="macAddress">
+            <label for="serialNumber" class="form-label" th:text="#{storageObject.storage}">Storage</label>
+            <input type="text" class="form-control" id="storage" th:field="*{storage}">
+            <!--                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
         </div>
         <div class="mb-3">
-            <label for="remark" class="form-label">Remark</label>
-            <input type="password" class="form-control" id="remark">
+            <label for="macAddress" class="form-label" th:text="#{storageObject.mac}">MacAddress</label>
+            <input type="text" class="form-control" id="macAddress" th:field="*{mac}">
         </div>
         <div class="mb-3">
-            <label for="projectDevice" class="form-label">ProjectDevice</label>
-            <input type="password" class="form-control" id="projectDevice">
+            <label for="remark" class="form-label" th:text="#{storageObject.remark}">Remark</label>
+            <input type="text" class="form-control" id="remark" th:field="*{remark}">
         </div>
         <div class="mb-3">
-            <label for="storedAtCu" class="form-label">StoredAtCustomer</label>
-            <input type="password" class="form-control" id="storedAtCu">
+            <label for="projectDevice" class="form-label" th:text="#{storageObject.projectDevice}">ProjectDevice</label>
+            <input type="text" class="form-control" id="projectDevice" th:field="*{projectDev}">
+        </div>
+        <div class="mb-3">
+            <label for="storedAtCu" class="form-label" th:text="#{storageObject.storedAtCustomer}">StoredAtCustomer</label>
+            <input type="text" class="form-control" id="storedAtCu" th:field="*{storedAtCu}">
         </div>
 
         <button type="submit" class="btn btn-outline-success" th:text="#{button.save}">Submit</button>

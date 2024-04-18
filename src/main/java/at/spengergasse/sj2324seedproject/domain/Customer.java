@@ -7,8 +7,12 @@ import lombok.Builder;
 @Embeddable
 public record Customer(String connectionNo) {
 
-//    @Override
-//    public String toString(){
-//        return connectionNo;
-//    }
+    @Override
+    public String toString(){
+        if(connectionNo != null){
+            return connectionNo;
+        }else{
+            return "No number!";
+        }
+    }
 }

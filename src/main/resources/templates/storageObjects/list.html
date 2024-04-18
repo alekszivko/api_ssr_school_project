@@ -16,7 +16,8 @@
   <table class="table">
     <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col" th:text="#{storageObject.randomKey}">#</th>
+      <th scope="col" th:text="#{storageObject.storage}"></th>
       <th scope="col" th:text="#{storageObject.serialNR}">SerialNumber</th>
       <th scope="col" th:text="#{storageObject.mac}">MacAddress</th>
       <th scope="col" th:text="#{storageObject.remark}">Remark</th>
@@ -33,7 +34,8 @@
     <tr th:each="storageObject, storageObjectStatus : ${storageObjects}"
         th:object="${storageObject}">
 
-      <th scope="row">1</th>
+      <th scope="row" th:text="*{getApiKeyID()}">1</th>
+      <td th:text="*{storedStorage.name}">KL23-KHO0-1324</td>
       <td th:text="*{serialNumber.toUpperCase()}">KL23-KHO0-1324</td>
       <td th:text="*{macAddress.toUpperCase()}">ff-ff-ff-ff-ff-ff</td>
       <td th:text="*{remark}">It's a remark!</td>

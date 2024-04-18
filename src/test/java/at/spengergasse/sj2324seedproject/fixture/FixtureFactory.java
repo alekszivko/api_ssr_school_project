@@ -91,6 +91,7 @@ public class FixtureFactory {
 
   public static StorageObject give_me_a_storageObject1() {
     return StorageObject.builder()
+                   .apiKeyID(keyGen.getRandomKey(16))
         .serialNumber("abcd1234")
         .macAddress(ConstantsDomain.DEFAULT_MAC)
         .remark("this is a remark1")
@@ -103,6 +104,7 @@ public class FixtureFactory {
 
   public static StorageObject give_me_a_storageObject2() {
     return StorageObject.builder()
+                   .apiKeyID(keyGen.getRandomKey(16))
         .serialNumber("abcd1234")
         .macAddress(ConstantsDomain.DEFAULT_MAC)
         .remark("this is a remark2")

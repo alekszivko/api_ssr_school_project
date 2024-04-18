@@ -2,6 +2,7 @@ package at.spengergasse.sj2324seedproject.service;
 
 import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.*;
+import at.spengergasse.sj2324seedproject.foundation.ApiKeyGenerator;
 import at.spengergasse.sj2324seedproject.persistence.RepositoryProducer;
 import at.spengergasse.sj2324seedproject.persistence.RepositoryStorageObject;
 import at.spengergasse.sj2324seedproject.persistence.RepositoryStorageObjectMeta;
@@ -24,6 +25,8 @@ public class ServiceInit{
     private final RepositoryStorageObjectMeta repositoryStorageObjectMeta;
     @Autowired
     private final StorageRepository           storageRepository;
+    @Autowired
+    private final ApiKeyGenerator             keyGen;
 
 
     @PostConstruct
@@ -77,6 +80,8 @@ public class ServiceInit{
 
         StorageObject sto1 = StorageObject.builder()
                                           //                                          .storedStorage(storage1)
+                                          .apiKeyID(keyGen.getRandomKey(16))
+                                          .storedStorage(storage1)
                                           .serialNumber("aaaaaaa")
                                           .macAddress(ConstantsDomain.DEFAULT_MAC_GROUP)
                                           .remark("this is a remark1")
@@ -89,6 +94,8 @@ public class ServiceInit{
 
         StorageObject sto2 = StorageObject.builder()
                                           //                                          .storedStorage(storage1)
+                                          .apiKeyID(keyGen.getRandomKey(16))
+                                          .storedStorage(storage1)
                                           .serialNumber("bbbbbbbe")
                                           .macAddress(ConstantsDomain.DEFAULT_MAC)
                                           .remark("this is a remark2")
@@ -108,7 +115,8 @@ public class ServiceInit{
         sto2.setStorageObjectMeta(storageObjectMeta);
         sto1.setStorageObjectMeta(storageObjectMeta2);
 
-        repositoryStorageObject.saveAll(List.of(sto1, sto2));
+        repositoryStorageObject.saveAll(List.of(sto1,
+                                                sto2));
 
 
         //        repositoryStorageObjectMeta.saveAll(List.of(storageObjectMeta, storageObjectMeta2));
