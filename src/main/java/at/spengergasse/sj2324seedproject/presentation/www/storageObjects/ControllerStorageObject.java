@@ -1,4 +1,4 @@
-package at.spengergasse.sj2324seedproject.presentation.www;
+package at.spengergasse.sj2324seedproject.presentation.www.storageObject;
 
 import at.spengergasse.sj2324seedproject.domain.StorageObject;
 import at.spengergasse.sj2324seedproject.service.ServiceStorageObject;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/storageObjects")
@@ -27,21 +25,21 @@ public class ControllerStorageObject{
     public String getStorageObject(Model model){
         List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
         model.addAttribute("storageObjects", storageObjects);
-        return "storageObject/list";
+        return "storageObjects/list";
     }
 
     @GetMapping("/new")
     public ModelAndView showNewForm(Model model){
         var modelAndView = new ModelAndView();
-        modelAndView.addObject("form", new CreateStorageObjectForm());
-        modelAndView.setViewName("storageObject/new");
+        modelAndView.addObject("form", Crea);
+        modelAndView.setViewName("storageObjects/new");
         return modelAndView;
     }
 
     @PostMapping("/new")
     public String handleNewFormSubmisson(Model model, @Valid CreateStorageObjectForm createStorageObjectForm){
         model.addAttribute("form", new CreateStorageObjectForm());
-        return "storageObject/new";
+        return "storageObjects/new";
     }
 }
 

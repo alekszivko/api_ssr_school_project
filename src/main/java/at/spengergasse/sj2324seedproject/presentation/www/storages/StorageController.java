@@ -56,14 +56,14 @@ public class StorageController {
     return "redirect:/storages";
   }
 
+
   @GetMapping("/edit/{id}")
   public String editStorage(@PathVariable Long id, Model model) {
     return storageService.getStorageById(
-            id).map(EditStorageForm::create).map(form -> model.addAttribute("form", form)).map(_ ->
-            "storages/editStorage")
-        .orElse("redirect:reservations");
+                                 id).map(EditStorageForm::create).map(form -> model.addAttribute("form", form)).map(_ ->
+                                                                                                                            "storages/editStorage")
+                         .orElse("redirect:reservations");
   }
-
   @PostMapping("/edit/{id}")
   public String handleNewStorageFormSubmission(@PathVariable Long id,
       @Valid @ModelAttribute(name = "form") EditStorageForm form,
