@@ -11,5 +11,4 @@ public class Sj2324SeedprojectApplication {
 		System.out.println(org.hibernate.Version.getVersionString());
 		SpringApplication.run(Sj2324SeedprojectApplication.class, args);
 	}
-
 }

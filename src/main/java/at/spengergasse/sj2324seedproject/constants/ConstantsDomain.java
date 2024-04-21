@@ -18,7 +18,10 @@ public class ConstantsDomain{
     public static final String URL_BASE_STO_META          = "/api/storageObjectMeta";
     public static final String URL_BASE_STO_META_NAME     = "/metaName";
 
-//    #######################################################################################
-    public static final String TEMPLATE_STOO_BASE = "/storageObjects";
-    public static final String TEMPLATE_STOO_NEW = "/new";
+    //    #######################################################################################
+    public static final String TEMPLATE_STOO_BASE   = "/storageObjects";
+    public static final String TEMPLATE_STOO_NEW    = "/new";
+    public static final String TEMPLATE_STOO_DELETE = "/delete/{key}";
+    public static final String TEMPLATE_STOO_EDIT   = "/edit/{key}";
+    public static final String P                    = "%";
 }

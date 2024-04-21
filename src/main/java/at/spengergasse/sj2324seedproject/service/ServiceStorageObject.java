@@ -1,5 +1,6 @@
 package at.spengergasse.sj2324seedproject.service;
 
+import at.spengergasse.sj2324seedproject.constants.ConstantsDomain;
 import at.spengergasse.sj2324seedproject.domain.Customer;
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.domain.StorageObject;
@@ -117,18 +118,24 @@ public class ServiceStorageObject{
                                    sto.setStoredAtCustomer(Customer.builder().connectionNo(storedAtCu).build());
                                return sto;
                                }).orElseThrow(() -> new IllegalArgumentException("StorageObject with key %s doesnt exist in DB".formatted(apiKey)));
-//        repositoryStorageObject.save(StorageObject.builder()
-//                                                  .apiKeyID(apiKey)
-//                                                  .storedStorage(Storage.builder()
-//                                                                        .name(storage)
-//                                                                        .build())
-//                                                  .serialNumber(serialNr)
-//                                                  .macAddress(mac)
-//                                                  .remark(remark)
-//                                                  .projectDevice(!projectDev.isEmpty())
-//                                                  .storedAtCustomer(Customer.builder()
-//                                                                            .connectionNo(storedAtCu.isEmpty() ? "No Customer" : storedAtCu)
-//                                                                            .build())
-//                                                  .build());
+/*        repositoryStorageObject.save(StorageObject.builder()
+                                                  .apiKeyID(apiKey)
+                                                  .storedStorage(Storage.builder()
+                                                                        .name(storage)
+                                                                        .build())
+                                                  .serialNumber(serialNr)
+                                                  .macAddress(mac)
+                                                  .remark(remark)
+                                                  .projectDevice(!projectDev.isEmpty())
+                                                  .storedAtCustomer(Customer.builder()
+                                                                            .connectionNo(storedAtCu.isEmpty() ? "No Customer" : storedAtCu)
+                                                                            .build())
+                                                  .build());*/
+    }
+
+    public Stream<StorageObject> searchFind(String search){
+        search = ConstantsDomain.P+search.toString()+ConstantsDomain.P;
+        List<StorageObject> storageObjects = repositoryStorageObject.searchStoo(search.toString());
+        return storageObjects.stream();
     }
 }

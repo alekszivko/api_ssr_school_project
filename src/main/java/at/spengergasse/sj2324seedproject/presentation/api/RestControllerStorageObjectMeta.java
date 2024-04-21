@@ -26,7 +26,6 @@ public class RestControllerStorageObjectMeta{
     @Autowired
     private final ServiceStorageObjectMeta serviceStorageObjectMeta;
 
-    //TODO T2611
 
         @GetMapping
         public HttpEntity<List<StorageObjectMetaDTO>> fetchStorageObjectMeta(

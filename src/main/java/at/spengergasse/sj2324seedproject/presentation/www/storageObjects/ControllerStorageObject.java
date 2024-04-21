@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -21,30 +18,32 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(ConstantsDomain.TEMPLATE_STOO_BASE)
-public class ControllerStorageObject{
+public class ControllerStorageObject implements RedirectForwardSupport{
 
     @Autowired
     private final ServiceStorageObject serviceStorageObject;
     @Autowired
-    private final ApiKeyGenerator apiKeyGenerator;
+    private final ApiKeyGenerator      apiKeyGenerator;
 
     @GetMapping
     public String getStorageObject(Model model){
         List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
-        String              randomKey      = apiKeyGenerator.getRandomKey(6);
+        String              randomKey      = apiKeyGenerator.getRandomKey(16);
         model.addAttribute("storageObjects",
-                           storageObjects);
+                           storageObjects
+                          );
 
         return "storageObjects/list";
     }
 
     @GetMapping(ConstantsDomain.TEMPLATE_STOO_NEW)
     public ModelAndView showNewForm(){
-        var miau = new ModelAndView();
-        miau.addObject("form",
-                       CreateStorageObjectForm.create());
-        miau.setViewName("storageObjects/new");
-        return miau;
+        var mav = new ModelAndView();
+        mav.addObject("form",
+                      CreateStorageObjectForm.create()
+                     );
+        mav.setViewName("storageObjects/new");
+        return mav;
     }
 
     @PostMapping(ConstantsDomain.TEMPLATE_STOO_NEW)
@@ -58,18 +57,79 @@ public class ControllerStorageObject{
         }
 
         serviceStorageObject.createStorageObject(form.randomKey(),
-                                                form.storage(),
-                                                form.serialNr(),
+                                                 form.storage(),
+                                                 form.serialNr(),
                                                  form.mac(),
                                                  form.remark(),
                                                  form.projectDev(),
-                                                 form.storedAtCu());
+                                                 form.storedAtCu()
+                                                );
 
         // Redirect after post pattern / PRG pattern
-//        List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
+        //        List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
 
-        return "redirect:/storageObjects";
+        return redirect(ConstantsDomain.TEMPLATE_STOO_BASE);
     }
+
+    @GetMapping(ConstantsDomain.TEMPLATE_STOO_EDIT)
+    public String showEditForm(
+            @PathVariable
+            String key,
+            Model model){
+        return serviceStorageObject.getStorageObjectByKey(key)
+                                   .map(EditStorageObjectForm::create)
+                                   .map(form -> model.addAttribute("form",
+                                                                   form
+                                                                  ))
+                                   .map(_ -> "storageObjects/edit")
+                                   .orElse(redirect(ConstantsDomain.TEMPLATE_STOO_BASE));
+
+    }
+
+    @PostMapping(ConstantsDomain.TEMPLATE_STOO_EDIT)
+    public String handleEditFormSubmisson(
+            @PathVariable
+            String key,
+            @Valid
+            @ModelAttribute(name = "form")
+            EditStorageObjectForm form,
+            BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "storageObjects/new";
+        }
+        serviceStorageObject.updateStorageObject(key,
+                                                 form.storage(),
+                                                 form.serialNr(),
+                                                 form.mac(),
+                                                 form.remark(),
+                                                 form.projectDev(),
+                                                 form.storedAtCu()
+                                                );
+        return redirect(ConstantsDomain.TEMPLATE_STOO_BASE);
+    }
+
+    @GetMapping(ConstantsDomain.TEMPLATE_STOO_DELETE)
+    public String deleteStorageObject(
+            @PathVariable
+            String key){
+        serviceStorageObject.delete(key);
+        return redirect(ConstantsDomain.TEMPLATE_STOO_BASE);
+    }
+
+//    @GetMapping
+//    public String getSearchObject(@Valid
+//                                        @ModelAttribute(name = "miniForm")
+//                                        CommandSearch search,
+//                                        BindingResult bindingResult){
+//
+//        if(bindingResult.hasErrors()){
+//            return "storageObjects/list";
+//        }
+//
+//        serviceStorageObject.searchFind(search.toString());    //TODO adding search bar into code...
+//
+//        return redirect(ConstantsDomain.TEMPLATE_STOO_BASE);
+//    }
+
 }
-
-
