@@ -1,4 +1,4 @@
-# Collaborative school work
+# Collaborative school project
 
 An unfinished example project written in school. Has api endpoints as well as server side
 rendered templates
@@ -241,14 +241,14 @@ mvn exec:java -Dexec.mainClass="at.spengergasse.sj2324seedproject.TestMainApplic
 
 * /reservations
 * /reservations/new
-* /reservations/edit/<key>
+* /reservations/edit/\<key>
 
 * /storageObjects
 * /storageObjects/new
-* /storageObjects/edit/<key>
+* /storageObjects/edit/\<key>
 
 * /storages
 * /storages/new
-* /storages/edit/<id>
+* /storages/edit/\<id>
 
 </details>
