@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>sj2324-seed</artifactId>
   <build>
     <plugins>
+      <plugin>
+        <artifactId>springdoc-openapi-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <phase>integration-test</phase>
+          </execution>
+        </executions>
+        <groupId>org.springdoc</groupId>
+        <version>1.4</version>
+      </plugin>
       <plugin>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
@@ -15,20 +28,39 @@
             </exclude>
           </excludes>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <id>pre-integration-test</id>
+          </execution>
+          <execution>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+            <id>post-integration-test</id>
+          </execution>
+        </executions>
         <groupId>org.springframework.boot</groupId>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
+          <compilerArgs>--enable-preview</compilerArgs>
           <source>21</source>
           <target>21</target>
-          <compilerArgs>--enable-preview</compilerArgs>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
       </plugin>
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <groupId>org.springdoc</groupId>
+      <version>2.5.0</version>
+    </dependency>
     <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
@@ -46,8 +78,8 @@
       <groupId>org.springframework.boot</groupId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      <groupId>org.springframework.boot</groupId>
     </dependency>
     <dependency>
       <artifactId>spring-boot-starter-web</artifactId>
