@@ -25,7 +25,7 @@ public class RepositoryStorageObjectMetaTest{
     void ensure_save_storageObjectMeta_into_DB(){
 
         //given
-        StorageObjectMeta storageObjectMeta = FixtureFactory.give_me_a_storageObjectMeta1();
+        StorageObjectMeta storageObjectMeta = FixtureFactory.storageObjectMetaFixture();
 
 
         //when
