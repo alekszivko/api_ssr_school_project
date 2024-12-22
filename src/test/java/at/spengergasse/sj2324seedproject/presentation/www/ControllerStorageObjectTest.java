@@ -27,15 +27,15 @@ class ControllerStorageObjectTest{
 
     @Test
     void ensureGetStorageObjectReturnsProperView() throws Exception{
-        List<StorageObject> storageObjectList = List.of(FixtureFactory.give_me_a_storageObject1(),
-                                                        FixtureFactory.give_me_a_storageObject2());
+        List<StorageObject> storageObjectList = List.of(FixtureFactory.storageObjectFixture(),
+                                                        FixtureFactory.storageObjectFixture());
 
         when(serviceStorageObject.fetchStorageObjectsList()).thenReturn(storageObjectList);
         mockMvc.perform(get("/storageObjects"))
                .andExpect(status().isOk())
                .andExpect(model().attribute("storageObjects",
                                             storageObjectList))
-               .andExpect(view().name("storageObject/list"))
+               .andExpect(view().name("storageObjects/list"))
                .andDo(print());
     }
 
