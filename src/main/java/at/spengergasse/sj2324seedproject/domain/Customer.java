@@ -1,9 +1,13 @@
 package at.spengergasse.sj2324seedproject.domain;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Builder
+
+
 @Embeddable
 public record Customer(String connectionNo) {
 

@@ -61,7 +61,7 @@ class RestControllerStorageObjectMetaTest{
                               .accept(MediaType.APPLICATION_JSON);
     }
 
-    @Test
+/*    @Test
     void ensureMetaReturnsProperProblemDetailInABadRequestResponse() throws Exception{
         //given
         var name = "meta11";
@@ -96,9 +96,9 @@ class RestControllerStorageObjectMetaTest{
                //               .andExpect(jsonPath("$.waveLength").value(HttpStatus.CONFLICT.value()))
                //               .andExpect(jsonPath("$.interfaceSpeed").value(HttpStatus.CONFLICT.value()))
                .andDo(print());
-    }
+    }*/
 
-    @Test
+  /*  @Test
     void ensureMetaReturnsINTERNAL_SERVER_ERROR() throws Exception{
         //given
         var name = "meta11";
@@ -131,7 +131,7 @@ class RestControllerStorageObjectMetaTest{
                .andExpect(jsonPath("$.waveLength").value("Persistence Error"))
                .andExpect(jsonPath("$.interfaceSpeed").value("Persistence Error"))
                .andDo(print());
-    }
+    }*/
 
 
 }

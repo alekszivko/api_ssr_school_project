@@ -11,8 +11,6 @@ import org.testcontainers.utility.TestcontainersConfiguration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TestcontainersConfiguration.class)
 public class RepositoryStorageObjectMetaTest{
 
     @Autowired
@@ -25,7 +23,7 @@ public class RepositoryStorageObjectMetaTest{
     void ensure_save_storageObjectMeta_into_DB(){
 
         //given
-        StorageObjectMeta storageObjectMeta = FixtureFactory.give_me_a_storageObjectMeta1();
+        StorageObjectMeta storageObjectMeta = FixtureFactory.storageObjectMetaFixture();
 
 
         //when
