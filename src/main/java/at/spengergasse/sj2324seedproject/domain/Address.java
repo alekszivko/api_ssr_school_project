@@ -15,9 +15,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 // implemented by MM
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
 
 @Embeddable

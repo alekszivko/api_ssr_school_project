@@ -7,18 +7,14 @@ public record StorageObjectDTO(String serialNumber,
                                String macAddress,
                                String remark,
                                boolean projectDevice,
-                               Customer storedAtCustomer,
+                               Customer storaedAtCustomer,
                                StorageObjectMetaDTO storageObjectMeta,
+                               //                               StorageDTO storageDTO,
+                               //                               UserDTO userDTO,
                                String status){
     public StorageObjectDTO(StorageObject storageObject){
-        this(storageObject.getSerialNumber(),
-            storageObject.getMacAddress(),
-            storageObject.getRemark(),
-            storageObject.getProjectDevice(),
-            storageObject.getStoredAtCustomer(),
-            new StorageObjectMetaDTO(
-                storageObject.getStorageObjectMeta()),
-            storageObject.getStatus()
+        this(storageObject.getSerialNumber(), storageObject.getMacAddress(), storageObject.getRemark(), storageObject.getProjectDevice(), storageObject.getStoredAtCustomer(), new StorageObjectMetaDTO(storageObject.getStorageObjectMeta()),
+                /*new StorageDTO(storageObject.getStoredStorage()),*/ /*new UserDTO(storageObject.getStoredAtUser()),*/ storageObject.getStatus()
                                                                                                                                      .name());
     }
 }

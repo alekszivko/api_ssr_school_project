@@ -11,6 +11,7 @@ import org.testcontainers.utility.TestcontainersConfiguration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@Import(TestcontainersConfiguration.class)
 public class RepositoryProducerTest{
 
 
@@ -21,7 +22,8 @@ public class RepositoryProducerTest{
     void ensure_save_producer_into_DB(){
 
         //given
-        Producer producer1 = FixtureFactory.producerFixture();
+        Producer producer1 = FixtureFactory.give_me_a_producer1();
+        Producer producer2 = FixtureFactory.give_me_a_producer2();
 
 
 

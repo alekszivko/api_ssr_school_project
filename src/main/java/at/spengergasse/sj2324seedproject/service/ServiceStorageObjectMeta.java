@@ -20,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ServiceStorageObjectMeta{
 
+    @Autowired
     private RepositoryStorageObjectMeta repositoryStorageObjectMeta;
 
 
@@ -29,12 +30,26 @@ public class ServiceStorageObjectMeta{
     }
 
     public List<StorageObjectMeta> fetchStoMeta(Optional<String> nameParam){
-        List<StorageObjectMeta> storageObjectMetas = repositoryStorageObjectMeta.findAll();
+        List<StorageObjectMeta> storageObjectMetaList = new ArrayList<>();
 
-        return nameParam.map(param -> storageObjectMetas.stream()
-            .filter(stoMeta ->
-                stoMeta.getName().equalsIgnoreCase(nameParam.get())).toList())
-            .orElseGet(() -> storageObjectMetas);
+        if(nameParam.isPresent()){
+            List<StorageObjectMeta> stoMetaList = repositoryStorageObjectMeta.findAll();
+            for(StorageObjectMeta stm: stoMetaList){
+                String tempName = nameParam.get()
+                                           .toUpperCase();
+                String stmUpper = stm.getName()
+                                     .toUpperCase();
+                if(stmUpper.contains(tempName)){
+                    storageObjectMetaList.add(stm);
+                }
+            }
+
+            if(storageObjectMetaList.isEmpty()){
+                return repositoryStorageObjectMeta.findAll();
+            }
+            return storageObjectMetaList;
+        }
+        return repositoryStorageObjectMeta.findAll();
     }
 
     public StorageObjectMeta findStorageObjectMeta(String name){

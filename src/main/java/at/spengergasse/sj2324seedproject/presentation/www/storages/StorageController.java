@@ -30,7 +30,7 @@ public class StorageController {
     List<Storage> storages = storageService.fetchStorage(Optional.empty());
     model.addAttribute("storages", storages);
 
-    return "storages/list";
+    return "storages/storageList";
   }
 
 
@@ -38,7 +38,7 @@ public class StorageController {
   public ModelAndView showNewStorageForm() {
     var mav = new ModelAndView();
     mav.addObject("form", CreateStorageForm.create());
-    mav.setViewName("create");
+    mav.setViewName("storages/createStorage");
     return mav;
   }
 
@@ -61,7 +61,7 @@ public class StorageController {
   public String editStorage(@PathVariable Long id, Model model) {
     return storageService.getStorageById(
                                  id).map(EditStorageForm::create).map(form -> model.addAttribute("form", form)).map(_ ->
-                                                                                                                            "storages/edit")
+                                                                                                                            "storages/editStorage")
                          .orElse("redirect:reservations");
   }
   @PostMapping("/edit/{id}")

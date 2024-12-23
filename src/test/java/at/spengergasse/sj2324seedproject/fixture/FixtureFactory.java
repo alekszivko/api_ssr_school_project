@@ -8,7 +8,6 @@ import at.spengergasse.sj2324seedproject.domain.Profile;
 import at.spengergasse.sj2324seedproject.domain.Reservation;
 import at.spengergasse.sj2324seedproject.domain.Role;
 import at.spengergasse.sj2324seedproject.domain.SfpType;
-import at.spengergasse.sj2324seedproject.domain.Status;
 import at.spengergasse.sj2324seedproject.domain.Storage;
 import at.spengergasse.sj2324seedproject.domain.StorageObject;
 import at.spengergasse.sj2324seedproject.domain.StorageObjectMeta;
@@ -27,18 +26,25 @@ public class FixtureFactory {
   ///////////////////////////////////// Producer
 
 
-  public static Producer producerFixture() {
+  public static Producer give_me_a_producer1() {
     return Producer.builder()
         .shortname("MS")
         .name("Micro Soft")
         .build();
   }
 
+  public static Producer give_me_a_producer2() {
+    return Producer.builder()
+        .shortname("IBM")
+        .name("Internationale Bekleidungs Maschinenhersteller")
+        .build();
+  }
+
   ///////////////////////////////////// StorageObjectMeta
 
-  public static StorageObjectMeta storageObjectMetaFixture() {
+  public static StorageObjectMeta give_me_a_storageObjectMeta1() {
     return StorageObjectMeta.builder()
-        .producer(producerFixture())
+        .producer(give_me_a_producer1())
         .name("meta name1")
         .type(Type.IP_PHONE)
         .osVersion("version1")
@@ -46,6 +52,19 @@ public class FixtureFactory {
         .sfpType(SfpType.MM)
         .wavelength("1550nm")
         .interfacespeed("100-Mbps")
+        .build();
+  }
+
+  public static StorageObjectMeta give_me_a_storageObjectMeta2() {
+    return StorageObjectMeta.builder()
+        .producer(give_me_a_producer2())
+        .name("meta name2")
+        .type(Type.IP_PHONE)
+        .osVersion("version2")
+        .consumablesPerBox(2)
+        .sfpType(SfpType.MM)
+        .wavelength("1310nm")
+        .interfacespeed("1000-Mbps")
         .build();
   }
 
@@ -63,25 +82,40 @@ public class FixtureFactory {
 
   public static List<Producer> give_me_a_List_of_producer() {
     List<Producer> producersListe = new ArrayList<>();
-    producersListe.add(producerFixture());
+    producersListe.add(give_me_a_producer1());
+    producersListe.add(give_me_a_producer2());
     return producersListe;
   }
 
   ///////////////////////////////////// StorageObject
 
-  public static StorageObject storageObjectFixture() {
+  public static StorageObject give_me_a_storageObject1() {
     return StorageObject.builder()
-        .status(Status.PROJECT)
-        .storageObjectMeta(storageObjectMetaFixture())
-        .apiKeyID(keyGen.getRandomKey(16))
-        .storedStorage(storageFixture())
+                   .apiKeyID(keyGen.getRandomKey(16))
         .serialNumber("abcd1234")
         .macAddress(ConstantsDomain.DEFAULT_MAC)
         .remark("this is a remark1")
         .projectDevice(true)
-        .storedAtCustomer(customerFixture())
+        .storedAtCustomer(Customer.builder()
+            .connectionNo("123456")
+            .build())
         .build();
   }
+
+  public static StorageObject give_me_a_storageObject2() {
+    return StorageObject.builder()
+                   .apiKeyID(keyGen.getRandomKey(16))
+        .serialNumber("abcd1234")
+        .macAddress(ConstantsDomain.DEFAULT_MAC)
+        .remark("this is a remark2")
+        .projectDevice(true)
+        .storedAtCustomer(Customer.builder()
+            .connectionNo("sd123")
+            .build())
+        .build();
+  }
+
+  // User - Profile - Reservation - Customer fixtures
 
   // User - Profile - Reservation - Customer fixtures
 
@@ -171,4 +205,82 @@ public class FixtureFactory {
         .email("randomEmail@randomEmail.com")
         .build();
   }
+
+//    public static StorageObjectMeta give_me_a_storageObject1(){
+//
+//      return  StorageObjectMeta.builder().producer(give_me_a_List_of_producer())
+//                .type(Type.IP_PHONE)
+//                .name("name des StorageObjects1")
+//                .osVersion("beste1")
+//                .consumablesPerBox(2)
+//                .wavelength("ganzklein1")
+//                .interfacespeed("schnellste1")
+//                .build();
+//    }
+//    public static StorageObjectMeta give_me_a_storageObject2(){
+//
+//      return  StorageObjectMeta.builder().producer(give_me_a_List_of_producer())
+//                .type(Type.ROUTER)
+//                .name("name des StorageObjects2")
+//                .osVersion("beste32")
+//                .consumablesPerBox(2)
+//                .wavelength("ganzklein2")
+//                .interfacespeed("schnellste2")
+//                .build();
+//    }
+//    public static StorageObjectMeta give_me_a_storageObject3(){
+//
+//      return  StorageObjectMeta.builder().producer(give_me_a_List_of_producer())
+//                .type(Type.SFP)
+//                .name("name des StorageObjects3")
+//                .osVersion("beste3")
+//                .consumablesPerBox(2)
+//                .wavelength("ganzklein3")
+//                .interfacespeed("schnellste3")
+//                .build();
+//    }
+//
+//    public static StorageObject give_me_a_storageObject4(){
+//        return StorageObject.builder()
+//
+//                       .build();
+//    }
+//
+//
+//
+//    public static Producer  give_me_a_producer1(){
+//        return Producer.builder().shortname("kurzer Name1")
+//                       .name("langer name1")
+//                       .build();
+//    }
+//    public static Producer  give_me_a_producer2(){
+//        return Producer.builder().shortname("kurzer Name2")
+//                       .name("langer name2")
+//                       .build();
+//    }
+//    public static Producer  give_me_a_producer3(){
+//        return Producer.builder().shortname("kurzer Name3")
+//                       .name("langer name3")
+//                       .build();
+//    }
+//
+//    public static List<Producer> give_me_a_List_of_producer(){
+//        List<Producer> producersListe = new ArrayList<>();
+//         producersListe.add(give_me_a_producer1());
+//         producersListe.add(give_me_a_producer2());
+//         producersListe.add(give_me_a_producer3());
+//
+//
+//        return producersListe;
+//    }
+//
+//    public static List<StorageObjectMeta> give_me_a_storageObjectMete_List(){
+//        List<StorageObjectMeta> storageObjectMetaList = new ArrayList<>();
+//        storageObjectMetaList.add(give_me_a_storageObject1());
+//        storageObjectMetaList.add(give_me_a_storageObject2());
+//        storageObjectMetaList.add(give_me_a_storageObject3());
+//        return storageObjectMetaList;
+//    }
+
+
 }

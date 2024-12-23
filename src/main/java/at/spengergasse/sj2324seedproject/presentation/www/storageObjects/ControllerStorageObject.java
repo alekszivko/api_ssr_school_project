@@ -20,11 +20,15 @@ import java.util.List;
 @RequestMapping(ConstantsDomain.TEMPLATE_STOO_BASE)
 public class ControllerStorageObject implements RedirectForwardSupport{
 
+    @Autowired
     private final ServiceStorageObject serviceStorageObject;
+    @Autowired
+    private final ApiKeyGenerator      apiKeyGenerator;
 
     @GetMapping
     public String getStorageObject(Model model){
         List<StorageObject> storageObjects = serviceStorageObject.fetchStorageObjectsList();
+        String              randomKey      = apiKeyGenerator.getRandomKey(16);
         model.addAttribute("storageObjects",
                            storageObjects
                           );

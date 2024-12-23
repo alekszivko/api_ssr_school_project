@@ -36,24 +36,22 @@ class RestControllerStorageObjectTest{
     }
 
     @Test
-    void ensureFetchAllReturnsContentForExistingData() throws Exception{
+    void ensureGetApiStorageObjectsWorks() throws Exception{
         //given, when
-        StorageObject storageObject = FixtureFactory.storageObjectFixture();
-
-        when(serviceStorageObject.findStorageObjectMac(Optional.empty())).thenReturn(storageObject);
-        var request = get(ConstantsDomain.URI_BASE_STORAGEOBJECT+ConstantsDomain.URI_BASE_STORAGEOBJECT_MAC, storageObject.getMacAddress()).accept(MediaType.APPLICATION_JSON);
+        StorageObject storageObject = FixtureFactory.give_me_a_storageObject1();
 
         //then, expect
-
-
+        var request = get(ConstantsDomain.URI_BASE_STORAGEOBJECT+ConstantsDomain.URI_BASE_STORAGEOBJECT_MAC, storageObject.getMacAddress()).accept(MediaType.APPLICATION_JSON);
+        when(serviceStorageObject.findStorageObjectMac(Optional.empty())).thenReturn(storageObject);
         mockMvc.perform(request)
                .andExpect(status().isOk())
                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-               .andExpect(jsonPath("$.serialNumber").value(storageObject.getSerialNumber()))
-               .andExpect(jsonPath("$.macAddress").value(storageObject.getMacAddress()))
-               .andExpect(jsonPath("$.remark").value(storageObject.getRemark()))
-               .andExpect(jsonPath("$.projectDevice").value(storageObject.getProjectDevice()))
-               .andExpect(jsonPath("$.storedAtCustomer.connectionNo").value(storageObject.getStoredAtCustomer().connectionNo()))
+               .andExpect(jsonPath("$[0].serialNumber").value("abcd1234"))
+               .andExpect(jsonPath("$[0].macAddress").value("ff-ff-ff-ff-ff-ff"))
+               .andExpect(jsonPath("$[0].remark").value("this is a remark1"))
+               .andExpect(jsonPath("$[0].projectDevice").value("true"))
+               .andExpect(jsonPath("$[0][0].connectionNo").value("123456"))
+               //               .andExpect(jsonPath("$[0].storaedAtCustomer").value("abcd1234"))
                .andDo(print());
 
 

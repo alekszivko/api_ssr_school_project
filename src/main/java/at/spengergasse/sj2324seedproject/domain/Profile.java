@@ -11,11 +11,9 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder
+@Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-
-
-@Embeddable
 public class Profile {
 
     private static final int USERNAME_LENGTH = 10;

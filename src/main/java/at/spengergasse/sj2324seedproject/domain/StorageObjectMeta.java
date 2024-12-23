@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -17,14 +16,17 @@ import java.util.List;
 
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-
+@Builder
 @Entity
 @Table(name = "storage_object_metas")
+
 public class StorageObjectMeta extends AbstractPersistable<Long>{
+
+    /*
+    Relations
+     */
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     public List<StorageObject> storageobject;
@@ -38,13 +40,17 @@ public class StorageObjectMeta extends AbstractPersistable<Long>{
     @Enumerated(EnumType.STRING)
     private Type type;
 
+    /*
+    Attributes
+     */
+
     @NotBlank
     @Column(name = "storage_object_name")
-    private String name;
+    private String name = ConstantsDomain.DEFAULT_VALUE;
 
     @NotBlank
     @Column(name = "os_version")
-    private String osVersion;
+    private String osVersion = ConstantsDomain.DEFAULT_VALUE;
 
     @Min(0)
     @Column(name = "consumables_per_box")
@@ -56,11 +62,11 @@ public class StorageObjectMeta extends AbstractPersistable<Long>{
 
     @NotBlank
     @Column(name = "wave_length")
-    private String wavelength;
+    private String wavelength = ConstantsDomain.DEFAULT_VALUE;
 
     @NotBlank
     @Column(name = "interface_speed")
-    private String interfacespeed;
+    private String interfacespeed = ConstantsDomain.DEFAULT_VALUE;
 
 
 }

@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+//@NoArgsConstructor
+@AllArgsConstructor //Error wenn erzeugt  -> java: Konstruktor Type() ist bereits in Enumeration at.spengergasse.sj23247abcif.domain.Type definiert
 public enum Type{
 
     IP_PHONE("IP Phone", "IPP"),
@@ -13,6 +14,17 @@ public enum Type{
     SFP("Sfp", "Sfp"),
     CONSUMABLES("Consumables", "Cs");
 
-    final private String longVersion;
-    final private String shortVersion;
+
+
+    private String longVersion;
+    private String shortVersion;
+
+//public enum Type {
+//
+//    IP_PHONE,
+//    ROUTER,
+//    SWITCH,
+//    SFP,
+//    CONSUMABLES
+//
 }

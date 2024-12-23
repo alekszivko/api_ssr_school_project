@@ -20,6 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @DataJpaTest
+@Import(TestcontainersConfiguration.class)
 class ReservationRepositoryTest {
 
   @Autowired

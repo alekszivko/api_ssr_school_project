@@ -13,6 +13,7 @@ import java.util.Objects;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@Import(TestcontainersConfiguration.class)
 public class RepositoryStorageObjectTest{
 
     @Autowired
@@ -22,7 +23,8 @@ public class RepositoryStorageObjectTest{
     void ensure_save_storageOBject_into_DB(){
 
         //given
-        StorageObject storageObject  = FixtureFactory.storageObjectFixture();
+        StorageObject storageObject  = FixtureFactory.give_me_a_storageObject1();
+        StorageObject storageObject2 = FixtureFactory.give_me_a_storageObject2();
 
         //when
         var saved  = repository.saveAndFlush(storageObject);

@@ -40,14 +40,12 @@ class StorageRepositoryTest {
   void ensureFindAllByNameContainingIgnoreCaseWorks() {
 
     //Given
-    Storage storage1 = FixtureFactory.storageFixture();
-    storage1.setName("test1");
-    Storage storage2 = FixtureFactory.storageFixture();
-
+    Storage storage1 = new Storage("Hauptlager DCE4", new Address());
+    Storage storage2 = new Storage("Nebenlager Af3", new Address());
     storageRepository.saveAll(List.of(storage1, storage2));
 
     //When
-    List<Storage> found = storageRepository.findAllByNameContainingIgnoreCase(storage1.getName());
+    List<Storage> found = storageRepository.findAllByNameContainingIgnoreCase("Hauptlager DCE4");
 
     //Then
     assertThat(found).containsExactly(storage1);

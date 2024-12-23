@@ -8,9 +8,6 @@ import at.spengergasse.sj2324seedproject.presentation.api.dtos.StorageObjectDTO;
 import at.spengergasse.sj2324seedproject.presentation.api.dtos.StorageObjectMetaDTO;
 import at.spengergasse.sj2324seedproject.service.ServiceStorageObjectMeta;
 import jakarta.validation.Valid;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -26,6 +23,7 @@ import java.util.Optional;
 @RequestMapping(ConstantsDomain.URL_BASE_STO_META)
 public class RestControllerStorageObjectMeta{
 
+    @Autowired
     private final ServiceStorageObjectMeta serviceStorageObjectMeta;
 
 
@@ -33,11 +31,31 @@ public class RestControllerStorageObjectMeta{
         public HttpEntity<List<StorageObjectMetaDTO>> fetchStorageObjectMeta(
                 @RequestParam
                 Optional<String> nameParam){
-
-            return ResponseEntity.ok(serviceStorageObjectMeta
-                .fetchStoMeta(nameParam).stream()
-                .map(StorageObjectMetaDTO::new)
-                .toList());
+            return Optional.of(serviceStorageObjectMeta.fetchStoMeta(nameParam))
+                           .filter(storageObjectMetas -> !storageObjectMetas.isEmpty())
+                           .map(sto -> sto.stream()
+                                          .map(StorageObjectMetaDTO::new)
+                                          .toList())
+                           .map(storageObjectMetaDTOS -> ResponseEntity.ok(storageObjectMetaDTOS))
+                           .orElse(ResponseEntity.noContent()
+                                                 .build());
+            /*
+                           .filter(sto -> sto.getName()
+                                             .contains(nameParam.get()))
+                           .map(sto2 -> sto2.stream()
+                                            .map(StorageObjectMetaDTO::new)
+                                            .toList())
+                           .map(storageObjectDTO -> ResponseEntity::ok (storageObjectMeta))
+                                           .orElseGet(ResponseEntity.noContent()
+                                                                    .build());*/
+            //        List<StorageObjectMetaDTO> result                = new ArrayList<>();
+            //        List<StorageObjectMeta>    persStorageObjectMeta = serviceStorageObjectMeta.fetchStoMeta(nameParam);
+            //        for(StorageObjectMeta stm: persStorageObjectMeta){
+            //            StorageObjectMetaDTO stmDTO = new StorageObjectMetaDTO(stm);
+            //            result.add(stmDTO);
+            //        }
+            //
+            //        return result;
         }
 
     @GetMapping(ConstantsDomain.URL_BASE_STO_META_NAME)
@@ -48,17 +66,30 @@ public class RestControllerStorageObjectMeta{
 
         StorageObjectMeta storageObjectMeta = serviceStorageObjectMeta.findStorageObjectMeta(name);
 
+
+        URI         location        = URI.create(ConstantsDomain.URL_BASE_STO_META+ConstantsDomain.URL_BASE_STO_META_NAME);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(location);
+        responseHeaders.set("Test Header 1",
+                            HttpHeaders.ACCEPT);
+
+
         if(storageObjectMeta == null){
-          return ResponseEntity.noContent().build();
+            //            headers.set();
+            responseHeaders.set("Test Header 2",
+                                HttpHeaders.IF_NONE_MATCH);
+            ResponseEntity<StorageObjectMetaDTO> entity = new ResponseEntity<>(responseHeaders,
+                                                                               HttpStatus.NO_CONTENT);
+            return entity;
         }
 
         StorageObjectMetaDTO storageObjectMetaDTO = new StorageObjectMetaDTO(storageObjectMeta);
 
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .location(URI.create(
-                ConstantsDomain.URL_BASE_STO_META + ConstantsDomain.URL_BASE_STO_META_NAME))
-            .body(storageObjectMetaDTO);
+
+        ResponseEntity<StorageObjectMetaDTO> entity = new ResponseEntity<>(storageObjectMetaDTO,
+                                                                           responseHeaders,
+                                                                           HttpStatus.OK);
+        return entity;
     }
 
     @PostMapping
@@ -80,7 +111,7 @@ public class RestControllerStorageObjectMeta{
                              .body(new StorageObjectMetaDTO(storageMeta));
     }
 
-    @ExceptionHandler(StorageObjectMetaAlreadyExistsException.class)
+    @ExceptionHandler(StorageObjectMetaAlreadyExistsException.class) //sobald dieser Excep.Handl. mehrmals gebraucht wird, rausziehen damit es mehrmals genutzt werden kann.
     public HttpEntity<ProblemDetail> StoMetaAlreadyExistsException(StorageObjectMetaAlreadyExistsException meta){
 
         HttpStatus status = HttpStatus.CONFLICT;

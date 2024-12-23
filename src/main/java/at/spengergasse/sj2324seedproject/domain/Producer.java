@@ -6,33 +6,38 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.util.List;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-
-
-@Entity
+@Builder
 @Table(name = "producers")
+@Entity
 public class Producer extends AbstractPersistable<Long>{
+
+    /*
+    Relations
+     */
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<StorageObjectMeta> storageObjectMeta;
 
+
+    /*
+     Attributes
+      */
+
     @Column(name = "shortname", length = ConstantsDomain.DEFAULT_LENGTH)
     @NotBlank
-    private String shortname;
+    private String shortname = ConstantsDomain.DEFAULT_VALUE;
 
     @NotBlank
     @Column(name = "producer_name", length =  ConstantsDomain.DEFAULT_LENGTH)
-    private String name;
+    private String name = ConstantsDomain.DEFAULT_VALUE;
 
 
 
