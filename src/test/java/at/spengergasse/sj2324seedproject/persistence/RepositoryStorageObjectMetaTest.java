@@ -11,8 +11,6 @@ import org.testcontainers.utility.TestcontainersConfiguration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TestcontainersConfiguration.class)
 public class RepositoryStorageObjectMetaTest{
 
     @Autowired
