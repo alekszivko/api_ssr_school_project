@@ -11,7 +11,6 @@ import org.testcontainers.utility.TestcontainersConfiguration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Import(TestcontainersConfiguration.class)
 public class RepositoryProducerTest{
 
 
