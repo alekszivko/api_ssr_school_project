@@ -48,7 +48,7 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.0</minimum>
+                      <minimum>0.0</minimum> <!-- bump up in the future overtime to 0.70-->
                     </limit>
                   </limits>
                 </rule>
@@ -100,8 +100,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <compilerArgs>--enable-preview</compilerArgs>
-          <source>21</source>
-          <target>21</target>
+          <source>22</source>
+          <target>22</target>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
       </plugin>

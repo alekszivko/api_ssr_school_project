@@ -7,19 +7,21 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@EqualsAndHashCode(callSuper = true)
+
 
 @Entity
 @Table(name ="storageObjectHistory")
-
 public class StorageObjectHistory extends AbstractPersistable<Long> {
 
     @ManyToOne(fetch = FetchType.LAZY)

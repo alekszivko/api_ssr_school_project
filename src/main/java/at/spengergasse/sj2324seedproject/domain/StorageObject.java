@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -13,22 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+
+
+@Entity
 @Table(name = "storage_objects")
 public class StorageObject extends AbstractPersistable<Long>{
 
-    /*
-    Relations
-     */
-
-
-    //    @JoinColumn(name = "fk_stored_at_user", foreignKey = @ForeignKey(name = "fk_storageObject_2_user"))
-    //    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @OneToMany
-    private List<User> storedAtUser = new ArrayList<>();
+    private List<User> storedAtUsers;
 
     @ManyToOne(fetch = FetchType.LAZY,
                cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -56,9 +53,6 @@ public class StorageObject extends AbstractPersistable<Long>{
               cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Reservation reservation;
 
-    /*
-    Attributes
-     */
     @Column(name = "serial_number")
     private String serialNumber;
 
@@ -68,7 +62,7 @@ public class StorageObject extends AbstractPersistable<Long>{
 
     @Column(name = "remark")
     @NotBlank
-    private String remark = ConstantsDomain.DEFAULT_VALUE;
+    private String remark;
 
     @Column(name = "project_device")
     private Boolean projectDevice;
